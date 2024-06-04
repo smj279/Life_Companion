@@ -2,58 +2,74 @@
     background-image: url('/background.jpg'); /* Adjust the path as needed */
     background-size: cover;
     background-position: center;
-    height: 80vh;
+    height: 700px; /* Adjusted height to create space below */
     width: 220vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end; /* Changed from space-around to flex-end */
     color: white;
     text-align: center;
-  }
-  
-  .logo img {
-    width: 80px;
+    position: relative; /* Added for positioning logo and nav links */
+    margin-bottom: 50px; /* Added margin-bottom to create space for content below */
+}
+
+.logo {
+    position: absolute; /* Added to position logo */
+    top: 20px; 
+    left: 70px; 
+}
+
+.logo img {
+    width: 230px;
     margin-bottom: 20px;
-    position: relative;
-  }
-  
-  .form-container {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .form-container h1 {
-    margin-bottom: 10px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input,
-  .form-group select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-  }
-  
-  button {
-    background-color: #007bff;
+}
+
+.nav-links {
+    position: absolute;
+    top: 20px;
+    right: 70px;
+}
+
+.nav-links a {
     color: white;
-    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 10px 15px; /* Padding around text */
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-links a:hover {
+    background-color: coral;
+    color: black; /* Change text color on hover */
+    text-decoration: underline;
+}
+
+.form-container {
+    margin-bottom: 20px; /* Adjust as needed to position above the bottom edge */
+}
+
+button {
+    background-color: chocolate;
+    color: white;
+    width: 250px;
+    height: 50px; /* Adjusted height for better appearance */
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: coral;
+}
+
+.content-below {
+    background-color: white; /* Added background color for contrast */
+    padding: 20px;
+    text-align: center;
+}
