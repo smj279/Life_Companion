@@ -12,7 +12,7 @@ const ContentSection = () => {
       <div className="about-life">
         <h3>About Life Companion</h3>
         <p>
-          Life Companion is a new online website. Through our network we want to make the process of relationship journey relatively effortless. All profiles are checked manually with phone verification to ensure a safe environment for the users. We will use the National ID card of the user for authentication work.
+          Life Companion is a new online website. Through our network, we want to make the process of the relationship journey relatively effortless. All profiles are checked manually with phone verification to ensure a safe environment for the users. We will use the National ID card of the user for authentication work.
         </p>
       </div>
 
@@ -56,6 +56,12 @@ const ContentSection = () => {
 
       <div className="footer-note">
         <p>Life Companion is a new online website and should not be used without permission.</p>
+      </div>
+
+      {}
+      <div className="red-section">
+        <h3>Get Connected With Us</h3>
+        <p>"Opt for a joyful existence by finding the perfect life partner."</p>
       </div>
     </div>
   );

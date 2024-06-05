@@ -1,4 +1,4 @@
-// CarouselSection.jsx
+
 import React, { useState } from 'react';
 import './CarouselSection.css';
 import image1 from '../assets/carousel1.png';

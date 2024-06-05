@@ -1,71 +1,84 @@
 .content-section {
-    background-color: white;
-    color: black;
-    padding: 20px;
-    text-align: left;
-    width: 80%;
-    margin: 0 auto;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .content-section h2, .content-section h3, .content-section h4 {
-    color: #B22222;
-  }
-  
-  .content-section p {
-    line-height: 1.6;
-  }
-  
-  .about-life a {
-    color: blue;
-    text-decoration: underline;
-  }
-  
-  .footer-links {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .footer-column {
-    flex: 1;
-    margin-right: 10px;
-  }
-  
-  .footer-column h4 {
-    margin-bottom: 10px;
-  }
-  
-  .footer-column ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-column li {
-    margin-bottom: 5px;
-  }
-  
-  .footer-column a {
-    color: #B22222; /* Dark red color */
-    text-decoration: none;
-  }
-  
-  .footer-column a:hover {
-    text-decoration: underline;
-  }
-  
-  .footer-note {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 14px;
-  }
-  
-  .follow-us {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .follow-us p {
-    font-size: 14px;
-  }
-  
+  background-color: white;
+  color: black;
+  padding: 20px;
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h2, .content-section h3, .content-section h4 {
+  color: #B22222;
+}
+
+.content-section p {
+  line-height: 1.6;
+}
+
+.about-life a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.footer-column {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.footer-column h4 {
+  margin-bottom: 10px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 5px;
+}
+
+.footer-column a {
+  color: #B22222; 
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+}
+
+.footer-note {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.follow-us {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.follow-us p {
+  font-size: 14px;
+}
+
+.red-section {
+  background-color: #ff6666; 
+  color: white; 
+  padding: 20px;
+  margin-top: 20px; 
+
+.red-section h3 {
+  color: white; 
+}
+
+.red-section p {
+  line-height: 1.6;
+}

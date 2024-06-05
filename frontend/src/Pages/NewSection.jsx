@@ -1,9 +1,9 @@
-// NewSection.jsx
+
 import React from 'react';
 import './NewSection.css';
-import image1 from '../assets/image1.png'; // Relationship Advise
-import image2 from '../assets/image2.png'; // Find Someone Special Near You
-import image3 from '../assets/image3.png'; // Let A Matchmaker Help You
+import image1 from '../assets/image1.png'; 
+import image2 from '../assets/image2.png'; 
+import image3 from '../assets/image3.png'; 
 
 const NewSection = () => {
   return (
