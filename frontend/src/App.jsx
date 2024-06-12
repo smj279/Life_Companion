@@ -6,6 +6,7 @@ import NewSection from './Pages/NewSection';
 import CarouselSection from './Pages/CarouselSection';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
+import DashboardPage from './Pages/DashboardPage';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           } />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/dashboard" element={<DashboardPage />} /> {}
         </Routes>
       </div>
     </Router>
@@ -30,7 +32,3 @@ function App() {
 }
 
 export default App;
-
-
-
-

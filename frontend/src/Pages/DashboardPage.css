@@ -1,0 +1,115 @@
+.dashboard-page {
+    font-family: Arial, sans-serif;
+  }
+   
+  .top-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: darkslategray;
+    padding: 20px 10px;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 90px;
+  }
+   
+  .top-section .logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+   
+  .top-section .logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Space between logo and search box */
+    margin-top: -17px; /* Adjust this value to move the logo up */
+  }
+  
+   
+  .top-section .search-box {
+    flex-grow: 1;
+    text-align: center;
+  }
+   
+  .top-section .search-box input {
+    width: 30%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+   
+  .top-section .dashboard {
+    margin-right: 60px;
+    position: relative;
+  }
+   
+  .top-section .dashboard .dropdown {
+    cursor: pointer;
+    position: relative;
+  }
+   
+  .top-section .dashboard .dropdown-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+   
+  .top-section .dashboard .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    left: -230px;
+    top: 60px;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 330px;
+    height: calc(100vh - 60px);
+    padding: 10px 0;
+    overflow-y: auto;
+  }
+   
+  .top-section .dashboard .dropdown-content a {
+    color: black;
+    padding: 25px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd;
+  }
+   
+  .top-section .dashboard .dropdown-content a:last-child {
+    border-bottom: none;
+  }
+   
+  .top-section .dashboard .dropdown-content a:hover {
+    background-color:coral;
+  }
+   
+  .content-section {
+    padding: 100px 20px 20px;
+  }
+   
+  .content-section .matches,
+  .content-section .search,
+  .content-section .testimonials {
+    margin-bottom: 20px;
+  }
+   
+  .content-section h2 {
+    border-bottom: 2px solid red;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+   
+  .top-section .dashboard .dropdown-content.show {
+    display: block;
+  }
+  
