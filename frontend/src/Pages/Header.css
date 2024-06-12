@@ -51,6 +51,9 @@
 .form-container {
     margin-bottom: 20px; 
 }
+.form-container h1 {
+    color: white;
+}
 
 button {
     background-color: chocolate;
