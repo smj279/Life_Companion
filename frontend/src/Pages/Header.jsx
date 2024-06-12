@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../assets/logo.png';
 
@@ -9,17 +10,18 @@ const Header = () => {
         <img src={logo} alt="Shaadi" />
       </div>
       <div className="nav-links">
-        <a href="/login">Login</a>
+        <Link to="/login">Login</Link>
         <a href="/help">Help</a>
       </div>
       <div className="form-container">
         <h1>Trusted matrimony to find your better half</h1>
-        <form>
-          <button type="submit">Let's Begin</button>
-        </form>
+        <Link to="/signup">
+          <button type="button">Let's Begin</button>
+        </Link>
       </div>
     </div>
   );
 };
 
 export default Header;
+
