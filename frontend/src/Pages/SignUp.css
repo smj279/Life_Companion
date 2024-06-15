@@ -77,6 +77,12 @@
     font-size: 3.2em;
     line-height: 1.1;
   }
+  .error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
   
   .button1 {
     width: 90%;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './DashboardPage.css';
 import logo from '../assets/logo.png';
 import storyImage1 from '../assets/story1.jpg'; 
@@ -9,6 +9,7 @@ import storyImage3 from '../assets/story3.jpg';
 const DashboardPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -16,6 +17,12 @@ const DashboardPage = () => {
 
   const toggleMoreStories = () => {
     setShowMore(!showMore);
+  };
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    
+    navigate('/'); 
   };
 
   return (
@@ -32,12 +39,13 @@ const DashboardPage = () => {
             <span className="dropdown-icon">&#9776;</span>
           </div>
           <div className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}>
-            <a href="#">Home</a>
+            <Link to="/dashboard">Home</Link>
             <a href="#">My Profile</a>
             <a href="#">Chosen Partner</a>
             <a href="#">Help</a>
             <a href="#">About Us</a>
             <a href="#">Privacy and Policy</a>
+            <a href="#" onClick={handleLogout}>Logout</a>
           </div>
         </div>
       </div>
