@@ -4,7 +4,7 @@ import Header from './Pages/Header';
 import ContentSection from './Pages/ContentSection';
 import NewSection from './Pages/NewSection';
 import CarouselSection from './Pages/CarouselSection';
-import SignUp from './Pages/SignUp';
+// import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import './App.css';
 
@@ -22,7 +22,7 @@ function App() {
             </>
           } />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          {/* <Route path="/signup" element={<SignUp />} /> */}
         </Routes>
       </div>
     </Router>
