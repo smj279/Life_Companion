@@ -1,0 +1,50 @@
+
+.carousel-section {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .carousel-image-container {
+    position: relative;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .carousel-thumbnails {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .thumbnail {
+    margin: 0 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .thumbnail-image {
+    width: 60px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .thumbnail:hover .thumbnail-image {
+    transform: scale(1.1);
+  }
+  
+  .thumbnail-caption {
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #333;
+  }
+  

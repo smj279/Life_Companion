@@ -1,0 +1,78 @@
+.header {
+    background-image: url('/background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 700px; 
+    width: 220vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; 
+    color: white;
+    text-align: center;
+    position: relative; 
+    margin-bottom: 50px; 
+}
+
+.logo {
+    position: absolute; 
+    top: 20px; 
+    left: 70px; 
+}
+
+.logo img {
+    width: 230px;
+    margin-bottom: 20px;
+}
+
+.nav-links {
+    position: absolute;
+    top: 20px;
+    right: 70px;
+}
+
+.nav-links a {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px 15px; 
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.nav-links a:hover {
+    background-color: coral;
+    color: black; 
+    text-decoration: underline;
+}
+
+.form-container {
+    margin-bottom: 20px; 
+}
+.form-container h1 {
+    color: white;
+}
+
+button {
+    background-color: chocolate;
+    color: white;
+    width: 250px;
+    height: 50px; 
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+button:hover {
+    background-color: coral;
+}
+
+.content-below {
+    background-color: white; 
+    padding: 20px;
+    text-align: center;
+}
