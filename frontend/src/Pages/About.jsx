@@ -19,3 +19,21 @@ const About = () => {
         to facilitating genuine relationships based on shared values, interests, and life goals.
       </p>
       
+      <h2 className="why-choose-heading">Why Choose Us?</h2>
+      <ul className="why-choose-list">
+        <li><strong>Comprehensive Profiles:</strong> Detailed profiles help you understand potential matches.</li>
+        <li><strong>Advanced Matching:</strong> Our algorithms ensure compatibility based on your preferences.</li>
+        <li><strong>Security First:</strong> We prioritize your safety with robust privacy settings and verification.</li>
+        <li><strong>Supportive Community:</strong> Join a community of like-minded individuals looking for serious relationships.</li>
+        <li><strong>User-Friendly Interface:</strong> Easy navigation and intuitive design make your experience seamless.</li>
+      </ul>
+      <h2 className="contact-heading">Contact Us</h2>
+      <p className="contact-description">
+        Have questions or feedback? We'd love to hear from you! Reach out to our support team at
+        <a href="mailto:support@[yourdomain].com" className="contact-email">support@[yourdomain].com</a>
+        or follow us on social media for updates and tips.
+      </p>
+    </div>
+  );
+}
+export default About;
