@@ -8,7 +8,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('01'); 
+  const [phone, setPhone] = useState(''); 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -26,9 +26,9 @@ const SignUp = () => {
     }
 
     
-    const phonePattern = /^01\d{9}$/;
+    const phonePattern = /^01[356789]\d{8}$/;
     if (!phonePattern.test(phone)) {
-      errors.phone = 'Phone number must be 11 digits long and start with "01".';
+      errors.phone = 'Invalid Phone Number.';
     }
 
     setErrors(errors);
