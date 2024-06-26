@@ -1,0 +1,162 @@
+.dashboard-page {
+  font-family: Arial, sans-serif;
+}
+
+.top-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: darkslategray;
+  padding: 20px 10px;
+  color: white;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 90px;
+}
+
+.top-section .logo {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-top: -17px;
+}
+
+.top-section .search-box {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.top-section .search-box input {
+  width: 30%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.top-section .dashboard {
+  margin-right: 60px;
+  position: relative;
+}
+
+.top-section .dashboard .dropdown {
+  cursor: pointer;
+  position: relative;
+}
+
+.top-section .dashboard .dropdown-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.top-section .dashboard .dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  left: -230px;
+  top: 60px;
+  background-color: brown;
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 330px;
+  height: calc(100vh - 60px);
+  padding: 10px 0;
+  overflow-y: auto;
+}
+
+.top-section .dashboard .dropdown-content a,
+.top-section .dashboard .dropdown-content button {
+  color: white;
+  padding: 25px 30px;
+  font-size: 18px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #ddd;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.top-section .dashboard .dropdown-content a:last-child,
+.top-section .dashboard .dropdown-content button:last-child {
+  border-bottom: none;
+}
+
+.top-section .dashboard .dropdown-content a:hover,
+.top-section .dashboard .dropdown-content button:hover {
+  background-color: coral;
+}
+
+.content-section {
+  padding: 100px 20px 20px;
+}
+
+.content-section .matches,
+.content-section .search,
+.content-section .testimonials {
+  margin-bottom: 20px;
+}
+
+.content-section h2 {
+  border-bottom: 2px solid red;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.top-section .dashboard .dropdown-content.show {
+  display: block;
+}
+
+.success-stories {
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.success-stories h2 {
+  text-align: left;
+  border-bottom: none;
+}
+
+.success-stories .note {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.success-stories .story {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.success-stories .story img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.success-stories .story p {
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.more-stories {
+  text-align: center;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 16px;
+}
