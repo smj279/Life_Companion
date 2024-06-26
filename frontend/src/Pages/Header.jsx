@@ -15,7 +15,7 @@ const Header = () => {
       </div>
       <div className="form-container">
         <h1>Trusted matrimony to find your better half</h1>
-        <Link to="/signup">
+        <Link to="/profile-form">
           <button type="button">Let's Begin</button>
         </Link>
       </div>
