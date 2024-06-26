@@ -1,0 +1,47 @@
+/* About.css */
+
+.about-page {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .about-heading,
+  .mission-heading,
+  .why-choose-heading,
+  .contact-heading {
+    color: #2c3e50;
+    animation: bounceIn 1s ease;
+  }
+  
+  .about-description,
+  .mission-description,
+  .contact-description {
+    color: #34495e;
+    animation: fadeInUp 1.5s ease;
+  }
+  
+  .why-choose-list li {
+    color: #2e4053;
+    margin-bottom: 10px;
+    animation: slideInLeft 2s ease;
+  }
+  
+  .contact-email {
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: bold;
+    animation: flash 2s infinite;
+  }
+  
+  .contact-email:hover {
+    text-decoration: underline;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  
+      
