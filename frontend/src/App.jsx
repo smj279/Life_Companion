@@ -31,6 +31,8 @@ function App() {
            {/* <Route path="/more-info" component= {<More_Info/>}/> */}
            <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          
+
         </Routes>
       </div>
     </Router>
