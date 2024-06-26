@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
@@ -139,3 +140,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
