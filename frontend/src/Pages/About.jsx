@@ -14,11 +14,10 @@ const About = () => {
       </p>
       <h2 className="mission-heading">Our Mission</h2>
       <p className="mission-description">
-        At [Your Matrimony Site Name], we are dedicated to helping people find their perfect match
+        At Life Companion, we are dedicated to helping people find their perfect match
         with ease and confidence. We understand the importance of compatibility and are committed
         to facilitating genuine relationships based on shared values, interests, and life goals.
       </p>
-      
       <h2 className="why-choose-heading">Why Choose Us?</h2>
       <ul className="why-choose-list">
         <li><strong>Comprehensive Profiles:</strong> Detailed profiles help you understand potential matches.</li>
@@ -36,4 +35,5 @@ const About = () => {
     </div>
   );
 }
+
 export default About;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
 import logo from '../assets/logo.png';
+import './Header.css'; // Adjust the path based on your actual project structure
 
 const Header = () => {
   return (
@@ -12,6 +12,7 @@ const Header = () => {
       <div className="nav-links">
         <Link to="/login">Login</Link>
         <a href="/help">Help</a>
+        <Link to="/about-us">About us</Link>
       </div>
       <div className="form-container">
         <h1>Trusted matrimony to find your better half</h1>
@@ -24,4 +25,3 @@ const Header = () => {
 };
 
 export default Header;
-
