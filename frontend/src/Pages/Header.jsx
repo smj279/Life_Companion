@@ -13,7 +13,6 @@ const Header = () => {
         <Link to="/login">Login</Link>
         <a href="/help">Help</a>
         <Link to="/about-us">About us</Link>
-        <Link to="/Profile">Profile</Link>
 
       </div>
       <div className="form-container">

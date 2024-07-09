@@ -17,7 +17,7 @@ import AboutUs from './Pages/About'; // Import AboutUs component from About.jsx
 import HelpPage from './Pages/HelpPage';
 
 import './App.css';
-import Profile from './Pages/Profile';
+
 // import HelpPage from './Pages/HelpPage';
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
           <Route path="/story3" element={<Story3 />} />
           <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
           <Route path="/help" element = {<HelpPage/>}/>
-          <Route path ="/Profile" element={<Profile/>}/>
+          
 
         </Routes>
       </div>
