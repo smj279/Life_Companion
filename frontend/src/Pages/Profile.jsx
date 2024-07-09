@@ -51,18 +51,32 @@ const Profile = () => {
 
   return (
     <div className="profile">
+    <div className="profile-header">
       <div className="profile-picture">
         <img src={storyImage3} alt="Profile" />
       </div>
-      <div className="profile-details">
+      <div className="profile-name">
         <h2>{profileData.name}</h2>
-        <p><strong>Date of Birth:</strong> {profileData.dateOfBirth}</p>
-        <p><strong>Present Address:</strong> {profileData.presentAddress}</p>
-        <p><strong>Permanent Address:</strong> {profileData.permanentAddress}</p>
-        <p><strong>Father's Name:</strong> {profileData.fathersName}</p>
-        <p><strong>Mother's Name:</strong> {profileData.mothersName}</p>
       </div>
     </div>
+    <div className="profile-details">
+      <div className="profile-detail-item">
+        <strong>Date of Birth:</strong> {profileData.dateOfBirth}
+      </div>
+      <div className="profile-detail-item">
+        <strong>Present Address:</strong> {profileData.presentAddress}
+      </div>
+      <div className="profile-detail-item">
+        <strong>Permanent Address:</strong> {profileData.permanentAddress}
+      </div>
+      <div className="profile-detail-item">
+        <strong>Father's Name:</strong> {profileData.fathersName}
+      </div>
+      <div className="profile-detail-item">
+        <strong>Mother's Name:</strong> {profileData.mothersName}
+      </div>
+    </div>
+  </div>
   );
 };
 
