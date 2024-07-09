@@ -14,7 +14,10 @@ import Story1 from './Pages/Story1';
 import Story2 from './Pages/Story2';
 import Story3 from './Pages/Story3';
 import AboutUs from './Pages/About'; // Import AboutUs component from About.jsx
+import HelpPage from './Pages/HelpPage';
+
 import './App.css';
+// import HelpPage from './Pages/HelpPage';
 
 function App() {
   return (
@@ -39,6 +42,7 @@ function App() {
           <Route path="/story2" element={<Story2 />} />
           <Route path="/story3" element={<Story3 />} />
           <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
+          <Route path="/help" element = {<HelpPage/>}/>
         </Routes>
       </div>
     </Router>
