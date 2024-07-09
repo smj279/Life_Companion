@@ -1,0 +1,57 @@
+.profile {
+    display: flex;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .profile:hover {
+    transform: scale(1.02);
+  }
+  
+  .profile .profile-picture {
+    flex: 0 0 150px;
+    margin-right: 20px;
+  }
+  
+  .profile .profile-picture img {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile .profile-details {
+    flex: 1;
+  }
+  
+  .profile h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .profile p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  /* Animation for hover effect */
+  @keyframes hoverPulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .profile:hover .profile-picture img {
+    animation: hoverPulse 0.5s ease-in-out;
+  }
+  
