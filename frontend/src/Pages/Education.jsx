@@ -238,7 +238,7 @@ const Education = () => {
             ))}
           </select>
         </div>
-        <Link to="/signup" onClick={handleNextClick}>
+        <Link to="/more-info" onClick={handleNextClick}>
           <button type="button" className="styled-button">Next</button>
         </Link>
       </form>

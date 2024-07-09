@@ -1,28 +1,42 @@
 
+
+
 .profile-form-container {
   display: flex;
-    max-width: 1000px; 
-    max-height: 600px; 
-    overflow: auto; 
-    margin: 0 auto;
-    padding: 20px;
-    background: #e9d6d7;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 90%; /* Use a percentage for responsiveness */
+  max-width: 1000px; /* Maximum width for large screens */
+  height: 50%; /* Use a percentage for responsiveness */
+  max-height: 580px; /* Maximum height for large screens */
+  margin: 0 auto;
+  padding: 20px;
+  background: #e9d6d7;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
 }
+
 
 .profile-form-container::before {
   content: '';
-  flex: 1;
-  background-image: url('../assets/couple1.png'); 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;  /* Adjust the width to control image size */
+  height: 100%;
+  background-image: url('../assets/couple1.png');
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   border-radius: 8px 0 0 8px;
+  z-index: 1; /* Ensure the image stays behind the content */
 }
 
 .profile-form-content {
-  flex: 2;
-  padding-left: 100px; 
+  flex: 1;
+  padding-left: 20px;
+  margin-left: 40%; /* Adjust margin to make room for the image */
+  z-index: 2; /* Ensure the content stays above the image */
+  position: relative; /* Add position relative to keep the content in place */
 }
 
 .profile-form {
@@ -32,7 +46,7 @@
 
 .profile-form h2 {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .profile-form .options {
@@ -51,17 +65,17 @@
   font-size: 14px;
   text-align: center;
   outline: none;
-  color: #333; 
+  color: #333;
 }
 
 .profile-form button.selected {
   background: #b2868e;
-  color: white; 
+  color: white;
   border-color: black;
 }
 
 .gender {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .navigate-signup {
@@ -78,6 +92,7 @@
   outline: none;
   margin-top: 20px;
 }
+
 .warning {
   color: red;
   margin-bottom: 20px;
