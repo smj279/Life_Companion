@@ -43,6 +43,7 @@ function App() {
           <Route path="/story3" element={<Story3 />} />
           <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
           <Route path="/help" element = {<HelpPage/>}/>
+
         </Routes>
       </div>
     </Router>
