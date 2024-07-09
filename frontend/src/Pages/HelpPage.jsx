@@ -1,5 +1,5 @@
 import React from 'react';
-
+import  './HelpPage.css'
  const HelpPage = () => {
   return (
     <div className="help-page">
