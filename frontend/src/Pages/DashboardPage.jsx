@@ -40,10 +40,10 @@ const DashboardPage = () => {
           </div>
           <div className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}>
             <Link to="/dashboard">Home</Link>
-            <a href="#">My Profile</a>
+            <Link to="/profile">My Profile</Link>
             <a href="#">Chosen Partner</a>
-            <a href="#">Help</a>
-            <a href="#">About Us</a>
+            <a href="/help">Help</a>
+            <Link to="/about-us">About us</Link>
             <a href="#">Privacy and Policy</a>
             <a href="#" onClick={handleLogout}>Logout</a>
           </div>

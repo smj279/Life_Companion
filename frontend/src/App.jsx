@@ -19,6 +19,7 @@ import Story2 from './Pages/Story2';
 import Story3 from './Pages/Story3';
 import AboutUs from './Pages/About'; 
 import HelpPage from './Pages/HelpPage';
+import Profile from './Pages/Profile';
 
 import './App.css';
 
@@ -51,6 +52,8 @@ function App() {
           <Route path="/story3" element={<Story3 />} />
           <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
           <Route path="/help" element = {<HelpPage/>}/>
+          <Route path="/profile" element = {<Profile/>}/>
+          
           
 
         </Routes>
