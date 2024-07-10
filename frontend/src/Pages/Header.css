@@ -48,9 +48,22 @@
     text-decoration: underline;
 }
 
+.nav-links .about-icon {
+    color: white;
+    font-size: 18px;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links .about-icon:hover {
+    color: coral;
+}
+
 .form-container {
     margin-bottom: 20px; 
 }
+
 .form-container h1 {
     color: white;
 }

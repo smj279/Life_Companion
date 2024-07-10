@@ -1,0 +1,99 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styles */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+  
+  /* Container styles */
+  .help-page {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styles */
+  .help-page h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Section styles */
+  .help-page section {
+    margin-bottom: 30px;
+  }
+  
+  .help-page h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  /* FAQ styles */
+  .faq {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+  }
+  
+  .question {
+    margin-bottom: 15px;
+  }
+  
+  .question h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .question p {
+    color: #666;
+  }
+  
+  /* Footer styles */
+  .footer-links {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .footer-links li {
+    margin: 0 10px;
+  }
+  
+  .footer-links a {
+    color: #666;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    color: #333;
+    text-decoration: underline;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .help-page {
+      padding: 15px;
+    }
+    
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+  

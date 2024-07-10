@@ -1,0 +1,113 @@
+/* About.css */
+
+.about-page {
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    color: #333;
+    font-family: 'Arial, sans-serif';
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  .about-heading {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #4A90E2;
+    animation: slideInFromLeft 1s ease-in-out;
+  }
+  
+  .about-description,
+  .mission-description,
+  .contact-description {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  .mission-heading,
+  .why-choose-heading,
+  .contact-heading {
+    font-size: 2em;
+    margin: 20px 0;
+    color: #D7263D;
+    text-align: center;
+    animation: slideInFromRight 1.2s ease-in-out;
+  }
+  
+  .why-choose-list {
+    list-style: none;
+    padding: 0;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  .why-choose-list li {
+    font-size: 1.2em;
+    margin: 15px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .why-choose-list li:before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+    transform: scale(1.3);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .why-choose-list li:hover {
+    transform: translateX(10px);
+    color: #4A90E2;
+  }
+  
+  .why-choose-list li:hover:before {
+    transform: translateX(10px) scale(1.5);
+    color: #FFA500;
+  }
+  
+  .contact-email {
+    color: #4A90E2;
+    text-decoration: none;
+  }
+  
+  .contact-email:hover {
+    text-decoration: underline;
+    color: #D7263D;
+    transition: color 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
