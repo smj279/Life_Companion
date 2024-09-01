@@ -1,3 +1,4 @@
+// AdditionalInfoForm.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -9,54 +10,84 @@ const AdditionalInfoForm = () => {
   const [fathersName, setFathersName] = useState('');
   const [mothersName, setMothersName] = useState('');
   const [dob, setDob] = useState('');
+  const [errors, setErrors] = useState({});
+  const [formValid, setFormValid] = useState(true);
 
-  const handleNextClick = (e) => {
+  const validateForm = () => {
+    const errors = {};
+
     if (!presentAddress || !permanentAddress || !fathersName || !mothersName || !dob) {
-      e.preventDefault();
-      alert('Please fill out all fields');
+      errors.general = 'All fields are required';
     }
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleNext = (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      setFormValid(false);
+      return;
+    }
+
+    // Save to local storage
+    localStorage.setItem('presentAddress', presentAddress);
+    localStorage.setItem('permanentAddress', permanentAddress);
+    localStorage.setItem('fathersName', fathersName);
+    localStorage.setItem('mothersName', mothersName);
+    localStorage.setItem('dob', dob);
+
+    // Navigate to education page
+    window.location.href = '/education';
   };
 
   return (
     <div className="page-background">
-      <div className="Container2">
+      <div className="Container1">
         <Link to="/profile-form" className="previous-arrow">
           <FaArrowLeft />
         </Link>
         <h1>Additional Information</h1>
-        <form>
-          <textarea
+        {!formValid && <p style={{ color: 'red' }}>{errors.general}</p>}
+        <form onSubmit={handleNext}>
+          <input
+            type="text"
             placeholder="Present Address"
             value={presentAddress}
             onChange={(e) => setPresentAddress(e.target.value)}
+            required
           />
-          <textarea
+          <input
+            type="text"
             placeholder="Permanent Address"
             value={permanentAddress}
             onChange={(e) => setPermanentAddress(e.target.value)}
+            required
           />
           <input
             type="text"
             placeholder="Father's Name"
             value={fathersName}
             onChange={(e) => setFathersName(e.target.value)}
+            required
           />
           <input
             type="text"
             placeholder="Mother's Name"
             value={mothersName}
             onChange={(e) => setMothersName(e.target.value)}
+            required
           />
-          <label htmlFor="dob">Date of Birth</label>
           <input
-            id="dob"
             type="date"
+            placeholder="Date of Birth"
             value={dob}
             onChange={(e) => setDob(e.target.value)}
+            required
           />
-          <Link to="/education" onClick={handleNextClick} className="left-align">
-            <button type="button" className="button2">Next</button>
-          </Link>
+          <button type="submit">Next</button>
         </form>
       </div>
     </div>
@@ -64,4 +95,3 @@ const AdditionalInfoForm = () => {
 };
 
 export default AdditionalInfoForm;
-

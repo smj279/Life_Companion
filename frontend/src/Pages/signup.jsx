@@ -1,3 +1,4 @@
+// SignUp.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -15,6 +16,23 @@ const SignUp = () => {
   const [formValid, setFormValid] = useState(true);
   const [warningMessage, setWarningMessage] = useState('');
   const navigate = useNavigate();
+
+  // Retrieve data from local storage
+  const profileFor = localStorage.getItem('profileFor');
+  const gender = localStorage.getItem('gender');
+  const presentAddress = localStorage.getItem('presentAddress');
+  const permanentAddress = localStorage.getItem('permanentAddress');
+  const fathersName = localStorage.getItem('fathersName');
+  const mothersName = localStorage.getItem('mothersName');
+  const dob = localStorage.getItem('dob');
+  const school = localStorage.getItem('school');
+  const schoolYear = localStorage.getItem('schoolYear');
+  const college = localStorage.getItem('college');
+  const collegeYear = localStorage.getItem('collegeYear');
+  const university = localStorage.getItem('university');
+  const universityYear = localStorage.getItem('universityYear');
+  const currentStatus = localStorage.getItem('currentStatus');
+  const occupation = localStorage.getItem('occupation');
 
   const validateForm = () => {
     const errors = {};
@@ -57,6 +75,21 @@ const SignUp = () => {
           password,
           email,
           phone,
+          profileFor,
+          gender,
+          presentAddress,
+          permanentAddress,
+          fathersName,
+          mothersName,
+          dob,
+          school,
+          schoolYear,
+          college,
+          collegeYear,
+          university,
+          universityYear,
+          currentStatus,
+          occupation,
         }),
       });
 
@@ -78,7 +111,7 @@ const SignUp = () => {
   return (
     <div className="page-background">
       <div className="Container1">
-        <Link to="/more-info" className="previous-arrow">
+        <Link to="/additional-info" className="previous-arrow">
           <FaArrowLeft />
         </Link>
         <h1>Sign Up</h1>
@@ -105,53 +138,43 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {errors.password && <p className="error">{errors.password}</p>}
+          {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
           <input
             type="password"
-            placeholder="Re-Enter Password"
+            placeholder="Confirm Password"
             value={rePassword}
             onChange={(e) => setRePassword(e.target.value)}
             required
           />
-          {errors.rePassword && <p className="error">{errors.rePassword}</p>}
+          {errors.rePassword && <p style={{ color: 'red' }}>{errors.rePassword}</p>}
           <input
             type="email"
-            placeholder="Email Address"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <input
-            type="tel"
-            placeholder="Phone Number"
+            type="text"
+            placeholder="Phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
           />
-          {errors.phone && <p className="error">{errors.phone}</p>}
-          <div className="terms">
+          {errors.phone && <p style={{ color: 'red' }}>{errors.phone}</p>}
+          <label>
             <input
               type="checkbox"
-              id="checkbox"
               checked={termsAccepted}
-              onChange={() => setTermsAccepted(!termsAccepted)}
-              required
+              onChange={(e) => setTermsAccepted(e.target.checked)}
             />
-            <label htmlFor="checkbox">
-              I agree to the <a href="#">Terms & Conditions</a>
-            </label>
-          </div>
-          <button className="button1" type="submit">
-            Sign Up
-          </button>
+            I accept the terms and conditions
+          </label>
+          <button type="submit" disabled={!termsAccepted}>Sign Up</button>
         </form>
-        <div className="member">
-          Already have an account? <Link to="/login">Login</Link>
-        </div>
       </div>
     </div>
   );
 };
-
 
 export default SignUp;
