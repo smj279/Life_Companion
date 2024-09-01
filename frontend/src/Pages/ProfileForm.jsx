@@ -1,17 +1,22 @@
+// ProfileForm.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
 import './ProfileForm.css';
 
 const ProfileForm = () => {
-  const [profileFor, setProfileFor] = useState('Myself');
+  const [profileFor, setProfileFor] = useState('');
   const [gender, setGender] = useState('');
   const [warning, setWarning] = useState('');
 
   const handleNextClick = (e) => {
     if (!profileFor || !gender) {
       e.preventDefault();
-      setWarning('Please select both "This Profile is for" and "Gender" options.');
+      setWarning('Please select both "Profile For" and "Gender" options.');
     } else {
+      // Save to local storage
+      localStorage.setItem('profileFor', profileFor);
+      localStorage.setItem('gender', gender);
       setWarning('');
     }
   };
@@ -50,7 +55,7 @@ const ProfileForm = () => {
             </div>
           </div>
           <Link to="/additional-info" onClick={handleNextClick}>
-            <button className="navigate-signup">Next</button>
+            <button className="navigate-signup">Next <FaArrowRight /></button>
           </Link>
         </div>
       </div>
@@ -59,4 +64,3 @@ const ProfileForm = () => {
 };
 
 export default ProfileForm;
-
