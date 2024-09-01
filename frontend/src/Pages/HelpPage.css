@@ -9,15 +9,15 @@
   body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
     padding: 20px;
   }
   
   /* Container styles */
   .help-page {
+    background-color:linear-gradient(to right, #fbc2eb, #a6c1ee);
     max-width: 800px;
     margin: 0 auto;
-    background-color: #fff;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
