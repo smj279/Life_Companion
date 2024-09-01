@@ -22,7 +22,12 @@ const userSchema = new mongoose.Schema({
   universityYear: { type: String },
   currentStatus: { type: String },
   occupation: { type: String },
-  createdAt: { type: Date, default: Date.now } // Add this line
+  religion: { type: String },
+  foodHabit: { type: String },
+  weight: { type: String },
+  height: { type: String },
+  hobby: { type: String },
+  createdAt: { type: Date, default: Date.now }
 });
 
 const User = mongoose.model('User', userSchema);
