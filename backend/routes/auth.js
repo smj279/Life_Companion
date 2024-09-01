@@ -1,3 +1,4 @@
+// routes/auth.js
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
@@ -5,9 +6,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-
 router.post('/signup', async (req, res) => {
-  const { fullName, userName, password, email, phone } = req.body;
+  const { fullName, userName, password, email, phone, profileFor, gender, presentAddress, permanentAddress, fathersName, mothersName, dob, school, schoolYear, college, collegeYear, university, universityYear, currentStatus, occupation } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -23,6 +23,21 @@ router.post('/signup', async (req, res) => {
       password: hashedPassword,
       email,
       phone,
+      profileFor,
+      gender,
+      presentAddress,
+      permanentAddress,
+      fathersName,
+      mothersName,
+      dob: new Date(dob),
+      school,
+      schoolYear,
+      college,
+      collegeYear,
+      university,
+      universityYear,
+      currentStatus,
+      occupation
     });
 
     await user.save();
@@ -34,7 +49,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-
+////
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -59,5 +74,7 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
+
+// ... existing login route
 
 module.exports = router;
