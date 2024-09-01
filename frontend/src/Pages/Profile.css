@@ -1,99 +1,87 @@
 /* Profile.css */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    
-    background-size: cover;
-  }
-  
-  .profile {
-    background: url(bg.jpg) ;
-    width: 100%;
-    max-width: 900px;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-  }
-  
-  .profile-header {
-    background: url(bg.jpg) ;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-picture img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 4px solid #1877f2;
-    margin-bottom: 20px;
-    transition: transform 0.3s;
-  }
-  
-  .profile-picture img:hover {
-    transform: scale(1.1);
-  }
-  
-  .profile-name h2 {
-    margin: 0;
-    color:#1c1e21;
-    font-size: 28px;
-    transition: color 0.3s;
-  }
-  
-  .profile-name h2:hover {
-    color: #1877f2;
-  }
-  
-  .profile-details {
-    width: 100%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-detail-item {
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #4b4f56;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5; /* Light background similar to Facebook */
 }
-  
-  
-  .profile-detail-item strong {
-    color: #1c1e21;
-  }
-  
-  .profile-detail-item:hover {
-    color: #1877f2;
-  }
-  
-  @media (min-width: 768px) {
-    .profile-header {
+
+.profile {
+  background: #fff; /* White background for the profile */
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e9ecef; /* Divider line */
+}
+
+.profile-picture img {
+  border-radius: 50%;
+  width: 120px; /* Adjusted size */
+  height: 120px; /* Adjusted size */
+  object-fit: cover;
+  border: 4px solid #1877f2; /* Facebook blue */
+  margin-bottom: 10px;
+  transition: transform 0.3s;
+}
+
+.profile-picture img:hover {
+  transform: scale(1.05);
+}
+
+.profile-name h2 {
+  margin: 0;
+  color: #1c1e21;
+  font-size: 24px; /* Adjusted font size */
+  font-weight: bold; /* Bold name */
+  transition: color 0.3s;
+}
+
+.profile-name h2:hover {
+  color: #1877f2; /* Facebook blue */
+}
+
+.profile-details {
+  width: 100%;
+  padding: 20px;
+}
+
+.profile-detail-item {
+  margin-bottom: 10px;
+  font-size: 14px; /* Adjusted font size */
+  color: #4b4f56;
+}
+
+.profile-detail-item strong {
+  color: #1c1e21;
+}
+
+.profile-detail-item:hover {
+  color: #1877f2; /* Facebook blue */
+}
+
+@media (min-width: 768px) {
+  .profile-header {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
-    }
-  
-    .profile-picture {
-      margin-right: 20px;
-    }
-  
-    .profile-name {
-      flex: 1;
-    }
   }
+
+  .profile-picture {
+      margin-right: 20px;
+  }
+
+  .profile-name {
+      flex: 
