@@ -7,7 +7,12 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 router.post('/signup', async (req, res) => {
-  const { fullName, userName, password, email, phone, profileFor, gender, presentAddress, permanentAddress, fathersName, mothersName, dob, school, schoolYear, college, collegeYear, university, universityYear, currentStatus, occupation } = req.body;
+  const { 
+    fullName, userName, password, email, phone, 
+    profileFor, gender, presentAddress, permanentAddress, fathersName, mothersName, dob, 
+    school, schoolYear, college, collegeYear, university, universityYear, currentStatus, occupation,
+    religion, foodHabit, weight, height, hobby 
+  } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -37,7 +42,12 @@ router.post('/signup', async (req, res) => {
       university,
       universityYear,
       currentStatus,
-      occupation
+      occupation,
+      religion,
+      foodHabit,
+      weight,
+      height,
+      hobby
     });
 
     await user.save();
@@ -49,7 +59,6 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-////
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -74,7 +83,5 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
-
-// ... existing login route
 
 module.exports = router;

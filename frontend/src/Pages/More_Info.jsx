@@ -1,3 +1,4 @@
+// more-info.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -11,10 +12,22 @@ const MoreInfo = () => {
   const [hobby, setHobby] = useState('');
 
   const handleNextClick = (e) => {
+    e.preventDefault();
+
     if (!religion || !foodHabit || !weight || !height || !hobby) {
-      e.preventDefault();
       alert('Please fill out all fields');
+      return;
     }
+
+    // Save to local storage
+    localStorage.setItem('religion', religion);
+    localStorage.setItem('foodHabit', foodHabit);
+    localStorage.setItem('weight', weight);
+    localStorage.setItem('height', height);
+    localStorage.setItem('hobby', hobby);
+
+    // Navigate to signup page
+    window.location.href = '/signup';
   };
 
   return (
@@ -79,9 +92,7 @@ const MoreInfo = () => {
             required
           />
         </div>
-        <Link to="/signup" onClick={handleNextClick}>
-          <button type="button" className="styled-button">Next</button>
-        </Link>
+        <button type="button" className="styled-button" onClick={handleNextClick}>Next</button>
       </form>
     </div>
   );
