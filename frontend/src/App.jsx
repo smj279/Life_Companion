@@ -31,6 +31,7 @@ function App() {
               <NewSection />
               <CarouselSection />
               <ContentSection />
+              
             </>
           } />
           
@@ -47,6 +48,7 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
           <Route path="/help" element={<HelpPage/>}/>
           <Route path="/profile" element={<Profile/>}/>
+          
         </Routes>
       </div>
     </Router>
