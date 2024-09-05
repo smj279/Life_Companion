@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Pages/Header';
@@ -7,7 +8,7 @@ import CarouselSection from './Pages/CarouselSection';
 import ProfileForm from './Pages/ProfileForm';
 import AdditionalInfoForm from './Pages/AdditionalInfoForm';
 import Education from './Pages/Education';
-import MoreInfo from './Pages/More_Info';  // Corrected import
+import MoreInfo from './Pages/More_Info'; // Corrected import
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import DashboardPage from './Pages/DashboardPage';
@@ -17,41 +18,47 @@ import Story3 from './Pages/Story3';
 import AboutUs from './Pages/About'; 
 import HelpPage from './Pages/HelpPage';
 import Profile from './Pages/Profile';
+import MessagePage from './Pages/MessagePage'; // Import MessagePage component
 
+import { UserProvider } from './context/UserContext'; // Import UserProvider
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Header />
-              <NewSection />
-              <CarouselSection />
-              <ContentSection />
-              
-            </>
-          } />
-          
-          <Route path="/profile-form" element={<ProfileForm />} />
-          <Route path="/additional-info" element={<AdditionalInfoForm/>} />
-          <Route path="/education" element={<Education/>} />
-          <Route path="/more-info" element={<MoreInfo />} />  {/* Corrected route */}
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} /> 
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/story1" element={<Story1 />} />
-          <Route path="/story2" element={<Story2 />} />
-          <Route path="/story3" element={<Story3 />} />
-          <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
-          <Route path="/help" element={<HelpPage/>}/>
-          <Route path="/profile" element={<Profile/>}/>
-          
-        </Routes>
-      </div>
-    </Router>
+    <UserProvider>
+      <Router>
+        <div className="app">
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <>
+                  <Header />
+                  <NewSection />
+                  <CarouselSection />
+                  <ContentSection />
+                </>
+              } 
+            />
+            
+            <Route path="/profile-form" element={<ProfileForm />} />
+            <Route path="/additional-info" element={<AdditionalInfoForm />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/more-info" element={<MoreInfo />} /> {/* Corrected route */}
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/story1" element={<Story1 />} />
+            <Route path="/story2" element={<Story2 />} />
+            <Route path="/story3" element={<Story3 />} />
+            <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
+            <Route path="/help" element={<HelpPage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/messages/:userId" element={<MessagePage />} /> {/* Route for chat */}
+          </Routes>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 
