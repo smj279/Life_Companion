@@ -1,71 +1,76 @@
-import React, { useState } from 'react';
+// src/components/Profile.jsx
+
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import './Profile.css';
-import storyImage3 from '../assets/story3.jpg'; 
 
 const Profile = () => {
-  const [profileData, setProfileData] = useState({
-    profilePicture: null,
-    name: "Mahfuj Rahman",
-    dateOfBirth: "20/11/2003",
-    presentAddress: "sun",
-    permanentAddress: "aust",
-    fathersName: "abc",
-    mothersName: "abc"
-  });
-//   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Create navigate function from react-router-dom
 
-//   useEffect(() => {
-//     fetchProfileData();
-//   }, []);
+  const [name, setName] = useState('John Doe');
+  const [presentAddress, setPresentAddress] = useState('Not provided');
+  const [permanentAddress, setPermanentAddress] = useState('Not provided');
+  const [fathersName, setFathersName] = useState('Not provided');
+  const [mothersName, setMothersName] = useState('Not provided');
+  const [dob, setDob] = useState('Not provided');
+  const [location, setLocation] = useState('Not provided');
 
-//   const fetchProfileData = async () => {
-//     try {
-//       const response = await fetch('http://example.com/api/profile');
-//       if (!response.ok) {
-//         throw new Error('Network response was not ok');
-//       }
-//       const data = await response.json();
-//       setProfileData(data);
-//       setLoading(false);
-//     } catch (error) {
-//       console.error('Error fetching profile data:', error);
-//       setLoading(false);
-//     }
-//   };
+  useEffect(() => {
+    const storedName = localStorage.getItem('name') || 'John Doe';
+    const storedPresentAddress = localStorage.getItem('presentAddress') || 'Not provided';
+    const storedPermanentAddress = localStorage.getItem('permanentAddress') || 'Not provided';
+    const storedFathersName = localStorage.getItem('fathersName') || 'Not provided';
+    const storedMothersName = localStorage.getItem('mothersName') || 'Not provided';
+    const storedDob = localStorage.getItem('dob') || 'Not provided';
+    const storedLocation = localStorage.getItem('location') || 'Not provided';
 
-//   if (loading) {
-//     return <div>Loading...</div>;
-//   }
+    setName(storedName);
+    setPresentAddress(storedPresentAddress);
+    setPermanentAddress(storedPermanentAddress);
+    setFathersName(storedFathersName);
+    setMothersName(storedMothersName);
+    setDob(storedDob);
+    setLocation(storedLocation);
+  }, []);
 
-//   if (!profileData) {
-//     return <div>Error: Unable to fetch profile data</div>;
-//   }
+  // Function to handle "More Information" button click
+  const handleMoreInfoClick = () => {
+    navigate('/more-info'); // Navigate to the MoreInfo page
+  };
 
   return (
-    <div className="profile">
-      <div className="profile-header">
+    <div className="profile-container">
+      <div className="profile-card">
+        {/* Profile Picture and Name */}
         <div className="profile-picture">
-          <img src={storyImage3} alt="Profile" />
+          <img src="/path/to/profile-picture.jpg" alt="Profile" />
         </div>
-        <div className="profile-name">
-          <h2>{profileData.name}</h2>
+        <h2 className="profile-name">{name}</h2>
+
+        {/* Profile Sections */}
+        <div className="profile-content">
+          {/* About Me Section */}
+          <div className="profile-section">
+            <h3>About Me</h3>
+            <p>Date of Birth: {dob}</p>
+            <p>Present Address: {presentAddress}</p>
+            <p>Permanent Address: {permanentAddress}</p>
+            <p>Father's Name: {fathersName}</p>
+            <p>Mother's Name: {mothersName}</p>
+          </div>
+
+          {/* My Location Section */}
+          <div className="profile-section">
+            <h3>My Location</h3>
+            <p>{location}</p>
+          </div>
         </div>
-      </div>
-      <div className="profile-details">
-        <div className="profile-detail-item">
-          <strong>Date of Birth:</strong> {profileData.dateOfBirth}
-        </div>
-        <div className="profile-detail-item">
-          <strong>Present Address:</strong> {profileData.presentAddress}
-        </div>
-        <div className="profile-detail-item">
-          <strong>Permanent Address:</strong> {profileData.permanentAddress}
-        </div>
-        <div className="profile-detail-item">
-          <strong>Father's Name:</strong> {profileData.fathersName}
-        </div>
-        <div className="profile-detail-item">
-          <strong>Mother's Name:</strong> {profileData.mothersName}
+
+        {/* Action Buttons */}
+        <div className="profile-actions">
+          <button className="action-button">Match</button>
+          <button className="action-button">Message</button>
+          <button className="action-button" onClick={handleMoreInfoClick}>More Information</button> {/* Navigate to MoreInfo */}
         </div>
       </div>
     </div>
