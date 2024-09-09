@@ -6,6 +6,22 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+// Middleware to check authentication
+const authMiddleware = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+
+  if (!token) return res.status(401).json({ error: 'No token, authorization denied' });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.status(401).json({ error: 'Token is not valid' });
+  }
+};
+
+// Route to handle user signup
 router.post('/signup', async (req, res) => {
   const { 
     fullName, userName, password, email, phone, 
@@ -59,6 +75,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+// Route to handle user login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -81,6 +98,28 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ error: 'Something went wrong' });
+  }
+});
+
+// Route to get the current user's data
+router.get('/me', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId).select('-password');
+    res.json({ userId: user._id, ...user.toObject() });
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Route to get all users except the current user
+router.get('/users', authMiddleware, async (req, res) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.user.userId } }).select('fullName presentAddress dob religion');
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 

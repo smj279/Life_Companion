@@ -9,7 +9,7 @@
   background-color: darkslategray;
   padding: 20px 10px;
   color: white;
-  position: absolute;
+  position:absolute;
   width: 100%;
   top: 0;
   left: 0;
@@ -159,4 +159,117 @@
   cursor: pointer;
   text-decoration: underline;
   font-size: 16px;
+}
+
+/* Scrollable boxes */
+.scrollable-section {
+  position: relative;
+  margin-top: 40px;
+  overflow: hidden; /* Ensure only the visible boxes are shown */
+}
+
+.scrollable-section .box-container {
+  display: flex;
+  justify-content: center; /* Center align boxes */
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollable-section .boxes {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  gap: 100px; /* Space between boxes */
+}
+
+.scrollable-section .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px; /* Fixed width */
+  height: 300px; /* Fixed height */
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-sizing: border-box; /* Ensure padding/border does not affect size */
+}
+
+.scrollable-section .box .circle {
+  width: 45%;
+  height: 140%;
+  background-color: lightgray;
+  border-radius: 80%;
+  margin-top: 10px;
+}
+
+.scrollable-section .box .name {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.scrollable-section .box .details {
+  margin-top: 10px;
+  font-size: 14px; /* Adjust font size as needed */
+  color: #555; /* Adjust text color if needed */
+}
+
+.scrollable-section .box .details p {
+  margin: 5px 0; /* Adjust spacing between fields */
+}
+
+
+.scrollable-section .box .buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+  gap: 10px; /* Space between buttons */
+}
+
+.scrollable-section .box .message-button,
+.scrollable-section .box .match-button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 10px 15px; /* Adjust padding for better appearance */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Adjust font size if needed */
+}
+
+.scrollable-section .box .match-button {
+  background-color: darkgreen; /* Optional: Different background color for differentiation */
+}
+
+.scrollable-section .navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.scrollable-section .previous-button,
+.scrollable-section .next-button {
+  padding: 10px 20px;
+  width: 9%;
+  font-size: 15px;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+.scrollable-section .previous-button {
+  background-color: blue; /* Distinguish Previous button color */
+}
+
+.scrollable-section .previous-button:disabled,
+.scrollable-section .next-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
