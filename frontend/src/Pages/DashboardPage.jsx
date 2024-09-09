@@ -9,11 +9,67 @@ import storyImage3 from '../assets/story3.jpg';
 const DashboardPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const [scrollIndex, setScrollIndex] = useState(0); // For controlling the box scroll
-  const boxes = Array(11).fill({ name: "ABC" }); // Array of 10 objects with names
+  const [scrollIndex, setScrollIndex] = useState(0);
+  const [users, setUsers] = useState([]); // State to hold user data
+  const [currentUserId, setCurrentUserId] = useState(null);
   
-  const dropdownRef = useRef(null); // Ref for the dropdown content
+  const dropdownRef = useRef(null); 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/me', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          setCurrentUserId(data.userId);
+        } else {
+          console.error('Error fetching current user data:', data.error);
+        }
+      } catch (error) {
+        console.error('Error fetching current user data:', error);
+      }
+    };
+
+    const fetchUsers = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        const response = await fetch(`http://localhost:5000/api/auth/users?userId=${currentUserId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          setUsers(data);
+        } else {
+          console.error('Error fetching users:', data.error);
+        }
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUserData().then(fetchUsers);
+  }, [currentUserId, navigate]);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -29,7 +85,7 @@ const DashboardPage = () => {
   };
 
   const handleNext = () => {
-    if (scrollIndex < boxes.length - 3) {
+    if (scrollIndex < users.length - 3) {
       setScrollIndex(scrollIndex + 3);
     }
   };
@@ -40,7 +96,6 @@ const DashboardPage = () => {
     }
   };
 
-  // Close dropdown if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -83,20 +138,19 @@ const DashboardPage = () => {
       </div>
 
       <div className="content-section">
-        {/* Scrollable Boxes Section */}
         <div className="scrollable-section">
           <h2>Recommended Matches</h2>
           <div className="box-container">
             <div className="boxes">
-              {boxes.slice(scrollIndex, scrollIndex + 3).map((box, index) => (
+              {users.slice(scrollIndex, scrollIndex + 3).map((user, index) => (
                 <div key={index} className="box">
                   <div className="circle"></div>
-                  <div className="name">{box.name}</div>
+                  <div className="name">{user.fullName}</div>
                   <div className="details">
-                    <p>Present Address: ggg</p>
-                    <p>Date of Birth  : 01/01/01</p>
-                    <p>Religion       : sss</p>
-                   </div>
+                    <p>Present Address: {user.presentAddress}</p>
+                    <p>Date of Birth  : {new Date(user.dob).toLocaleDateString()}</p>
+                    <p>Religion       : {user.religion}</p>
+                  </div>
                   <div className="buttons">
                     <button className="message-button">View Profile</button>
                     <button className="match-button">Match</button>
@@ -109,7 +163,7 @@ const DashboardPage = () => {
             <button className="previous-button" onClick={handlePrevious} disabled={scrollIndex === 0}>
               Previous
             </button>
-            <button className="next-button" onClick={handleNext} disabled={scrollIndex >= boxes.length - 3}>
+            <button className="next-button" onClick={handleNext} disabled={scrollIndex >= users.length - 3}>
               Next
             </button>
           </div>

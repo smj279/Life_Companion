@@ -4,16 +4,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const authRoutes = require('./routes/auth'); // Your previous authentication routes
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users'); // Import the new routes
 const http = require('http');
 const { Server } = require('socket.io');
-const Message = require('./models/Message'); // New model for chat messages
+const Message = require('./models/Message');
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173', // Assuming the frontend is running on port 5173
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST'],
   },
 });
@@ -30,8 +31,9 @@ mongoose.connect(process.env.MONGODB_URI, {
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error:', err));
 
-// Authentication routes
+// Authentication and User routes
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes); // Use the new routes
 
 // Basic route
 app.get('/', (req, res) => {
@@ -42,7 +44,6 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
 
-  // Event listener for sending a message
   socket.on('send_message', async (data) => {
     const { senderId, receiverId, content } = data;
     
@@ -52,16 +53,14 @@ io.on('connection', (socket) => {
         receiverId,
         content,
       });
-      await message.save(); // Save message to MongoDB
+      await message.save();
 
-      // Emit the message to the receiver
-      io.emit('receive_message', message);
+      io.to(receiverId).emit('receive_message', message);
     } catch (error) {
       console.error('Error saving message:', error);
     }
   });
 
-  // Event listener for user disconnect
   socket.on('disconnect', () => {
     console.log('User disconnected:', socket.id);
   });
