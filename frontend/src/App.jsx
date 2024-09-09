@@ -1,4 +1,5 @@
 // src/App.jsx
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Pages/Header';
@@ -8,6 +9,7 @@ import CarouselSection from './Pages/CarouselSection';
 import ProfileForm from './Pages/ProfileForm';
 import AdditionalInfoForm from './Pages/AdditionalInfoForm';
 import Education from './Pages/Education';
+import MoreInfo from './Pages/MoreInfo';  // Make sure this path matches the new MoreInfo page
 import MoreInfo from './Pages/More_Info'; // Corrected import
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
@@ -25,6 +27,8 @@ import './App.css';
 
 function App() {
   return (
+
+
     <UserProvider>
       <Router>
         <div className="app">

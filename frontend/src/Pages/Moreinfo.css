@@ -1,28 +1,104 @@
-/* src/components/MoreInfo.css */
-
-body {
-  margin: 0;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f7f8fa;
+/* Main profile container */
+.profile-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffe6f2; /* Light pink background */
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.more-info-container {
+/* Photo section: Stacking photos vertically */
+.photo-section {
+  display: flex;
+  flex-direction: column; /* Stack photos vertically */
+  justify-content: flex-start;
+  gap: 20px;
+  margin-right: 20px; /* Add space between photos and info sections */
+}
+
+/* Profile photos with fixed size */
+.profile-photo {
+  width: 250px; /* Fixed width */
+  height: 250px; /* Fixed height to ensure square */
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Info sections container */
+.info-sections {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
+  flex: 1;
+  gap: 20px;
+}
+
+/* Info card */
+.info-card {
+  background-color: white;
+  border-radius: 15px;
   padding: 20px;
-  background-color: #f7f8fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
-h1 {
-  color: #FF69B4;
-  margin-bottom: 20px;
+/* Section titles */
+.info-card h2 {
+  font-size: 24px;
+  color: #ff1493; /* Deep pink */
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-p {
-  font-size: 16px;
+/* Text styling */
+.info-card p {
+  font-size: 18px;
   color: #333;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Icon styling for sections */
+.icon {
+  font-size: 1.5em;
+  color: #ff69b4; /* Pink for icons */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  /* Stack info sections below photos on smaller screens */
+  .photo-section {
+    margin-right: 0;
+  }
+
+  /* Stack photos and info sections vertically */
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-sections {
+    width: 100%;
+    align-items: center;
+  }
+
+  .profile-photo {
+    width: 80%; /* Larger width for smaller screens */
+    max-width: 300px; /* Limit max width */
+    height: auto; /* Ensure aspect ratio is maintained */
+  }
+
+  /* Adjust card width for smaller screens */
+  .info-card {
+    width: 100%;
+    max-width: none;
+  }
 }
