@@ -38,6 +38,13 @@ const Profile = () => {
     navigate('/more-info');  // Navigate to the MoreInfo page
   };
 
+  // Function to handle "Message" button click
+  const handleMessageClick = () => {
+    // Assuming there is a user ID available, replace 'userId' with actual dynamic user ID
+    const userId = '12345'; // Example user ID, replace with real logic
+    navigate(`/messages/${userId}`); // Navigate to the MessagePage (previously Chat) for messaging
+  };
+
   return (
     <div className="profile-container">
       <div className="profile-card">
@@ -69,8 +76,10 @@ const Profile = () => {
         {/* Action Buttons */}
         <div className="profile-actions">
           <button className="action-button">Match</button>
-          <button className="action-button">Message</button>
-          <button className="action-button" onClick={handleMoreInfoClick}>More Information</button>  {/* Navigate to MoreInfo */}
+
+          <button className="action-button" onClick={handleMessageClick}>Message</button> {/* Navigate to chat page */}
+          <button className="action-button" onClick={handleMoreInfoClick}>More Information</button> {/* Navigate to MoreInfo */}
+
         </div>
       </div>
     </div>
