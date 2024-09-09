@@ -1,3 +1,5 @@
+// src/App.jsx
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Pages/Header';
@@ -7,7 +9,7 @@ import CarouselSection from './Pages/CarouselSection';
 import ProfileForm from './Pages/ProfileForm';
 import AdditionalInfoForm from './Pages/AdditionalInfoForm';
 import Education from './Pages/Education';
-import MoreInfo from './Pages/More_Info';  // Corrected import
+import MoreInfo from './Pages/MoreInfo';  // Make sure this path matches the new MoreInfo page
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import DashboardPage from './Pages/DashboardPage';
@@ -31,14 +33,13 @@ function App() {
               <NewSection />
               <CarouselSection />
               <ContentSection />
-              
             </>
           } />
           
           <Route path="/profile-form" element={<ProfileForm />} />
           <Route path="/additional-info" element={<AdditionalInfoForm/>} />
           <Route path="/education" element={<Education/>} />
-          <Route path="/more-info" element={<MoreInfo />} />  {/* Corrected route */}
+          <Route path="/more-info" element={<MoreInfo />} />  {/* Route for More Info */}
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} /> 
           <Route path="/dashboard" element={<DashboardPage />} />
@@ -48,7 +49,6 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
           <Route path="/help" element={<HelpPage/>}/>
           <Route path="/profile" element={<Profile/>}/>
-          
         </Routes>
       </div>
     </Router>

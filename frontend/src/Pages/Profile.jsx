@@ -1,11 +1,11 @@
 // src/components/Profile.jsx
 
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';  // Import useNavigate for navigation
 import './Profile.css';
 
 const Profile = () => {
-  const navigate = useNavigate(); // Create navigate function from react-router-dom
+  const navigate = useNavigate();  // Create navigate function from react-router-dom
 
   const [name, setName] = useState('John Doe');
   const [presentAddress, setPresentAddress] = useState('Not provided');
@@ -35,7 +35,7 @@ const Profile = () => {
 
   // Function to handle "More Information" button click
   const handleMoreInfoClick = () => {
-    navigate('/more-info'); // Navigate to the MoreInfo page
+    navigate('/more-info');  // Navigate to the MoreInfo page
   };
 
   return (
@@ -70,7 +70,7 @@ const Profile = () => {
         <div className="profile-actions">
           <button className="action-button">Match</button>
           <button className="action-button">Message</button>
-          <button className="action-button" onClick={handleMoreInfoClick}>More Information</button> {/* Navigate to MoreInfo */}
+          <button className="action-button" onClick={handleMoreInfoClick}>More Information</button>  {/* Navigate to MoreInfo */}
         </div>
       </div>
     </div>
