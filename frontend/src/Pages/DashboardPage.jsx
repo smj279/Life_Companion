@@ -5,6 +5,7 @@ import logo from '../assets/logo.png';
 import storyImage1 from '../assets/story1.jpg';
 import storyImage2 from '../assets/story2.jpg';
 import storyImage3 from '../assets/story3.jpg';
+import { FaBell } from 'react-icons/fa'; // Importing a bell icon from react-icons
 
 const DashboardPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -12,8 +13,8 @@ const DashboardPage = () => {
   const [scrollIndex, setScrollIndex] = useState(0);
   const [users, setUsers] = useState([]); // State to hold user data
   const [currentUserId, setCurrentUserId] = useState(null);
-  
-  const dropdownRef = useRef(null); 
+  const [currentUser, setCurrentUser] = useState(null); // State to store current logged-in user
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,13 +30,14 @@ const DashboardPage = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
         const data = await response.json();
         if (response.ok) {
           setCurrentUserId(data.userId);
+          setCurrentUser(data); // Save the entire current user data
         } else {
           console.error('Error fetching current user data:', data.error);
         }
@@ -53,7 +55,7 @@ const DashboardPage = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -81,7 +83,8 @@ const DashboardPage = () => {
 
   const handleLogout = (event) => {
     event.preventDefault();
-    navigate('/');
+    localStorage.removeItem('token');
+    navigate('/login');
   };
 
   const handleNext = () => {
@@ -118,6 +121,14 @@ const DashboardPage = () => {
         <div className="search-box">
           <input type="text" placeholder="Search profile..." />
         </div>
+        <div className="notification-icon">
+          <button className="notification-button">
+            <FaBell className="bell-icon" />
+          </button>
+        </div>
+        <div className="current-user">
+          {currentUser && <span>{currentUser.fullName}</span>} {/* Display logged-in user's name */}
+        </div>
         <div className="dashboard">
           <div className="dropdown" onClick={toggleDropdown}>
             <span className="dropdown-icon">&#9776;</span>
@@ -128,10 +139,10 @@ const DashboardPage = () => {
           >
             <Link to="/dashboard">Home</Link>
             <Link to="/profile">My Profile</Link>
-            <a href="#">Chosen Partner</a>
+            <a href="#">Matched Partners</a>
+            <a href="#">Chat Room</a>
             <a href="/help">Help</a>
             <Link to="/about-us">About us</Link>
-            <a href="#">Privacy and Policy</a>
             <a href="#" onClick={handleLogout}>Logout</a>
           </div>
         </div>
@@ -148,8 +159,8 @@ const DashboardPage = () => {
                   <div className="name">{user.fullName}</div>
                   <div className="details">
                     <p>Present Address: {user.presentAddress}</p>
-                    <p>Date of Birth  : {new Date(user.dob).toLocaleDateString()}</p>
-                    <p>Religion       : {user.religion}</p>
+                    <p>Date of Birth: {new Date(user.dob).toLocaleDateString()}</p>
+                    <p>Religion: {user.religion}</p>
                   </div>
                   <div className="buttons">
                     <button className="message-button">View Profile</button>
