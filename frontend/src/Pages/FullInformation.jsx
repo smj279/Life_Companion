@@ -1,8 +1,11 @@
+// src/Pages/FullInformation.jsx
+
 import React from 'react';
-import './MoreInfo.css';
+import './FullInformation.css'; // Ensure this file exists
+
 import { FaBriefcase, FaGraduationCap, FaHeart, FaUtensils, FaBook, FaWeight, FaRuler } from 'react-icons/fa';
 
-const MoreInfo = () => {
+const FullInformation = () => {
   const educationInfo = {
     school: 'ABC High School',
     schoolYear: '2010 - 2014',
@@ -23,15 +26,12 @@ const MoreInfo = () => {
 
   return (
     <div className="profile-container">
-      {/* Photo Section: Stack Photo 1 and Photo 2 */}
       <div className="photo-section">
         <img src="https://your-photo-url1.com" alt="Photo 1" className="profile-photo" />
         <img src="https://your-photo-url2.com" alt="Photo 2" className="profile-photo" />
       </div>
 
-      {/* Info Sections: Education and Additional Information */}
       <div className="info-sections">
-        {/* Educational Background */}
         <div className="info-card">
           <h2><FaGraduationCap className="icon" /> Education & Occupation</h2>
           <p><FaBriefcase className="icon" /> <strong>Occupation:</strong> {educationInfo.occupation}</p>
@@ -43,7 +43,6 @@ const MoreInfo = () => {
           <p><strong>Status:</strong> {educationInfo.currentStatus}</p>
         </div>
 
-        {/* Additional Information */}
         <div className="info-card">
           <h2><FaHeart className="icon" /> Additional Information</h2>
           <p><FaHeart className="icon" /> <strong>Religion:</strong> {additionalInfo.religion}</p>
@@ -57,4 +56,4 @@ const MoreInfo = () => {
   );
 };
 
-export default MoreInfo;
+export default FullInformation;
