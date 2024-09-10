@@ -15,9 +15,10 @@ import DashboardPage from './Pages/DashboardPage';
 import Story1 from './Pages/Story1';
 import Story2 from './Pages/Story2';
 import Story3 from './Pages/Story3';
-import AboutUs from './Pages/About'; 
+import AboutUs from './Pages/About';
 import HelpPage from './Pages/HelpPage';
-import Profile from './Pages/Profile';
+import Profile from './Pages/Profile'; // Renamed component for logged-in user profile
+import OthersProfile from './Pages/OthersProfile'; // New component for viewing other users' profiles
 import MessagePage from './Pages/MessagePage'; // Import MessagePage component
 
 import { UserProvider } from './context/UserContext'; // Import UserProvider
@@ -53,7 +54,13 @@ function App() {
             <Route path="/story3" element={<Story3 />} />
             <Route path="/about-us" element={<AboutUs />} /> {/* Use AboutUs component */}
             <Route path="/help" element={<HelpPage />} />
-            <Route path="/profile" element={<Profile />} />
+            
+            {/* New route for logged-in user's profile */}
+            <Route path="/profile" element={<Profile />} /> 
+
+            {/* New route for viewing other users' profiles */}
+            <Route path="/profile/:userId" element={<OthersProfile />} /> 
+
             <Route path="/messages/:userId" element={<MessagePage />} /> {/* Route for chat */}
           </Routes>
         </div>

@@ -1,24 +1,20 @@
 // routes/users.js
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User'); // Make sure this path is correct
+const User = require('../models/User');
+const authenticateToken = require('../middleware/authenticateToken');
 
-// Middleware to authenticate the user and extract userId
-const authenticateToken = require('../middleware/authenticateToken'); // You'll need to create this middleware
-
-// Route to get recommended users
-router.get('/recommended', authenticateToken, async (req, res) => {
-  const { userId } = req.user; // Extract userId from authenticated token
-
+// Route to get a specific user's details by ID
+router.get('/:id', authenticateToken, async (req, res) => {
   try {
-    const users = await User.find({ _id: { $ne: userId } }); // Fetch all users except the current user
-
-    // If needed, you can apply additional filtering, sorting, or logic here
-
-    res.status(200).json(users);
+    const user = await User.findById(req.params.id).select('fullName dob gender presentAddress permanentAddress occupation religion');
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.status(200).json(user);
   } catch (error) {
-    console.error('Error fetching recommended users:', error);
-    res.status(500).json({ error: 'Something went wrong' });
+    console.error('Error fetching user details:', error);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 

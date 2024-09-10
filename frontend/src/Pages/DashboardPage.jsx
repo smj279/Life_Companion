@@ -112,6 +112,10 @@ const DashboardPage = () => {
     };
   }, []);
 
+  const handleViewProfile = (userId) => {
+    navigate(`/profile/${userId}`);
+  };
+
   return (
     <div className="dashboard-page">
       <div className="top-section">
@@ -163,7 +167,9 @@ const DashboardPage = () => {
                     <p>Religion: {user.religion}</p>
                   </div>
                   <div className="buttons">
-                    <button className="message-button">View Profile</button>
+                    <button className="message-button" onClick={() => handleViewProfile(user._id)}>
+                      View Profile
+                    </button>
                     <button className="match-button">Match</button>
                   </div>
                 </div>
