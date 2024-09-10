@@ -18,6 +18,7 @@ const MoreInfo = () => {
   };
 
   return (
+    <div className="page-background2">
     <div className="info-container">
       <Link to="/education" className="previous-arrow">
         <FaArrowLeft />
@@ -47,7 +48,7 @@ const MoreInfo = () => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="weight" className="info-label">Weight</label>
+          <label htmlFor="weight" className="info-label">Weight(kg)</label>
           <input
             type="text"
             id="weight"
@@ -58,7 +59,7 @@ const MoreInfo = () => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="height" className="info-label">Height</label>
+          <label htmlFor="height" className="info-label">Height(cm)</label>
           <input
             type="text"
             id="height"
@@ -83,6 +84,7 @@ const MoreInfo = () => {
           <button type="button" className="styled-button">Next</button>
         </Link>
       </form>
+    </div>
     </div>
   );
 };
