@@ -1,4 +1,4 @@
-/* src/components/Profile.css */
+\/* src/components/OthersProfile.css */
 
 body {
   margin: 0;
@@ -6,14 +6,14 @@ body {
   background-color: #f7f8fa;
 }
 
-.profile-container {
+.others-profile-container {
   display: flex;
   justify-content: center;
   padding: 40px 0;
   width: 47%;
 }
 
-.profile-card {
+.others-profile-card {
   width: 100%;
   max-width: 900px;
   background-color: #fff;
@@ -23,13 +23,13 @@ body {
   text-align: center;
 }
 
-.profile-picture {
+.others-profile-picture {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.profile-picture img {
+.others-profile-picture img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -39,14 +39,14 @@ body {
   background-color: white;
 }
 
-.profile-name {
+.others-profile-name {
   font-size: 28px;
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
 }
 
-.profile-content {
+.others-profile-content {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -55,51 +55,36 @@ body {
   width: 100%;
 }
 
-.profile-section {
+.others-profile-section {
   flex: 1;
   min-width: 200px;
   text-align: left;
   background-color: rgba(255, 105, 180, 0.05);
   padding: 20px;
   border-radius: 8px;
-
 }
 
-.profile-section h3 {
+.others-profile-section h3 {
   font-size: 25px;
   font-weight: bold;
   color: #ff69b4;
   margin-bottom: 10px;
 }
 
-.profile-section p {
+.others-profile-section p {
   font-size: 16px;
   color: #000;
   font-weight: bold;
 }
 
-.profile-details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.interest-item, .cause-item {
-  background-color: #ff69b4;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-}
-
-.profile-actions {
+.others-profile-actions {
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 30px;
 }
 
-.action-button {
+.others-action-button {
   background-color: #ff69b4;
   color: white;
   padding: 12px 20px;
@@ -110,6 +95,6 @@ body {
   transition: background-color 0.3s;
 }
 
-.action-button:hover {
+.others-action-button:hover {
   background-color: #e05a87;
 }

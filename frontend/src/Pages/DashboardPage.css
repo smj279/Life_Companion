@@ -27,15 +27,52 @@
 .top-section .search-box {
   flex-grow: 1;
   text-align: center;
+  margin-left: 150px;
 }
 
 .top-section .search-box input {
-  width: 30%;
+  width: 50%;
   padding: 10px;
   font-size: 16px;
   border: none;
-  margin-top: 10px;
+  margin-top: 22px;
   border-radius: 4px;
+  margin-left: 330px;
+}
+
+/* Styling for the notification bell button */
+.notification-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 130px;
+  margin-top: -24px; /* Adjust this as needed */
+}
+
+.notification-button {
+ background-color: darkslategray;/* Yellow background for the button */
+  border: none;
+  border-radius: 30%;
+  padding: 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+.notification-button:hover {
+  background-color:orange; /* Darker yellow on hover */
+}
+
+.bell-icon {
+  color: yellow;
+  font-size: 24px;
+  margin-right: 80px;
+   /* Adjust size if needed */
+}
+.top-section .current-user {
+  margin-right: 150px;
+  font-size: 20px;
+  margin-top: 4px;
+  font-weight: bold;
+  color: white;
 }
 
 .top-section .dashboard {
