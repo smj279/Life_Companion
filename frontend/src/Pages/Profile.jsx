@@ -35,12 +35,17 @@ const Profile = () => {
   }, []);
 
   const handleMoreInfoClick = () => {
-    navigate('/more-info');
+
+    navigate('/full-information');  // Navigate to the FullInformation page
+
   };
 
   const handleMessageClick = () => {
+
     const userId = '12345';
     navigate(`/messages/${userId}`);
+
+  
   };
 
   return (
@@ -65,8 +70,11 @@ const Profile = () => {
 
         <div className="profile-actions">
           <button className="action-button">Match</button>
-          <button className="action-button" onClick={handleMessageClick}>Message</button>
-          <button className="action-button" onClick={handleMoreInfoClick}>More Information</button>
+
+
+          <button className="action-button" onClick={handleMessageClick}>Message</button> 
+          <button className="action-button" onClick={handleMoreInfoClick}>Full Information</button> {/* Navigate to FullInformation */}
+
         </div>
       </div>
     </div>
