@@ -22,8 +22,8 @@ import HelpPage from './Pages/HelpPage';
 
 import Profile from './Pages/Profile'; // Renamed component for logged-in user profile
 import OthersProfile from './Pages/OthersProfile'; // New component for viewing other users' profiles
-
 import MessagePage from './Pages/MessagePage'; // Import MessagePage component
+import MatchedPartners from './Pages/MatchedPartners'; // Import MatchedPartners component
 
 import { UserProvider } from './context/UserContext'; // Import UserProvider
 import './App.css';
@@ -64,15 +64,14 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/help" element={<HelpPage />} />
 
-            
             {/* New route for logged-in user's profile */}
             <Route path="/profile" element={<Profile />} /> 
 
             {/* New route for viewing other users' profiles */}
             <Route path="/profile/:userId" element={<OthersProfile />} /> 
 
-
-            
+            {/* New route for matched partners */}
+            <Route path="/matched-partners" element={<MatchedPartners />} />
 
             <Route path="/messages/:userId" element={<MessagePage />} /> {/* Route for chat */}
           </Routes>

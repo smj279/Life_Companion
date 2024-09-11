@@ -123,4 +123,47 @@ router.get('/users', authMiddleware, async (req, res) => {
   }
 });
 
+// Route to add a user to matched partners
+router.post('/match/:userId', authMiddleware, async (req, res) => {
+  const { userId } = req.params;
+  const currentUserId = req.user.userId;
+
+  try {
+    const currentUser = await User.findById(currentUserId);
+    if (!currentUser) return res.status(404).json({ error: 'User not found' });
+
+    // Check if user is already matched
+    if (currentUser.matchedPartners.includes(userId)) {
+      return res.status(400).json({ error: 'User already matched' });
+    }
+
+    currentUser.matchedPartners.push(userId);
+    await currentUser.save();
+
+    res.status(200).json({ message: 'User matched successfully' });
+  } catch (error) {
+    console.error('Error matching user:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Route to remove a user from matched partners
+router.post('/unmatch/:userId', authMiddleware, async (req, res) => {
+  const { userId } = req.params;
+  const currentUserId = req.user.userId;
+
+  try {
+    const currentUser = await User.findById(currentUserId);
+    if (!currentUser) return res.status(404).json({ error: 'User not found' });
+
+    currentUser.matchedPartners = currentUser.matchedPartners.filter(id => id.toString() !== userId);
+    await currentUser.save();
+
+    res.status(200).json({ message: 'User unmatched successfully' });
+  } catch (error) {
+    console.error('Error unmatching user:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 module.exports = router;

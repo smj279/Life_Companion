@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
   weight: { type: String },
   height: { type: String },
   hobby: { type: String },
+  matchedPartners: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Matched partners field
   createdAt: { type: Date, default: Date.now }
 });
 
