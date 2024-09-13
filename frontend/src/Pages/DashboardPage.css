@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   margin-right: 20px;
-  margin-top: -17px;
+  margin-top: -8px;
 }
 
 .top-section .search-box {
@@ -96,7 +96,7 @@
   right: 0;
   left: -230px;
   top: 60px;
-  background-color: rgb(216, 14, 74);
+  background-color:rgb(223, 220, 216);
   color: white;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -108,9 +108,11 @@
 
 .top-section .dashboard .dropdown-content a,
 .top-section .dashboard .dropdown-content button {
-  color: white;
+  color: black;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 25px 30px;
-  font-size: 18px;
+  font-size: 19px;
   text-decoration: none;
   display: block;
   border-bottom: 1px solid #ddd;
@@ -130,6 +132,35 @@
 .top-section .dashboard .dropdown-content button:hover {
   background-color: coral;
 }
+
+.dropdown-icon {
+  margin-right: 20px;
+  font-size: 18px;
+ margin-bottom: -5px;
+}
+
+/*
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.dropdown-logo {
+  width: 150px;
+  height: 40px;
+ 
+}
+
+.close-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+}
+
+*/
 
 .content-section {
   padding: 100px 20px 20px;

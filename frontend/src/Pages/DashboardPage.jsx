@@ -5,7 +5,8 @@ import logo from '../assets/logo.png';
 import storyImage1 from '../assets/story1.jpg';
 import storyImage2 from '../assets/story2.jpg';
 import storyImage3 from '../assets/story3.jpg';
-import { FaBell } from 'react-icons/fa'; 
+import { FaBell, FaHome, FaUser, FaComments, FaInfoCircle, FaQuestionCircle, FaSignOutAlt, FaUsers } from 'react-icons/fa'; 
+
 const DashboardPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
@@ -197,13 +198,28 @@ const DashboardPage = () => {
             ref={dropdownRef}
             className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}
           >
-            <Link to="/dashboard">Home</Link>
-            <Link to="/profile">My Profile</Link>
-            <Link to="/matched-partners">Matched Partners</Link>
-            <a href="#">Chat Room</a>
-            <a href="/help">Help</a>
-            <Link to="/about-us">About us</Link>
-            <a href="#" onClick={handleLogout}>Logout</a>
+           
+           <Link to="/dashboard">
+              <FaHome className="dropdown-icon" /> Home
+            </Link>
+            <Link to="/profile">
+              <FaUser className="dropdown-icon" /> My Profile
+            </Link>
+            <Link to="/matched-partners">
+              <FaUsers className="dropdown-icon" /> Matched Partners
+            </Link>
+            <Link to="/chat">
+              <FaComments className="dropdown-icon" /> Chat Room
+            </Link>
+            <Link to="/help">
+              <FaQuestionCircle className="dropdown-icon" /> Help
+            </Link>
+            <Link to="/about-us">
+              <FaInfoCircle className="dropdown-icon" /> About Us
+            </Link>
+            <a href="#" onClick={handleLogout}>
+              <FaSignOutAlt className="dropdown-icon" /> Logout
+            </a>
           </div>
         </div>
       </div>
