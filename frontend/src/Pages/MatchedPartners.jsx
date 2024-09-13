@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MatchedPartners.css';
+import logo from '../assets/logo.png';
 
 const MatchedPartners = () => {
   const [matchedPartners, setMatchedPartners] = useState([]);
@@ -42,22 +43,31 @@ const MatchedPartners = () => {
   };
 
   return (
-    <div className="matched-partners-container">
-      <h2 className="matched-partners-title">
-        Your Matched Partners ({matchedPartners.length})
-      </h2>
-      <div className="matched-partners-list">
-        {matchedPartners.map((user, index) => (
-          <div key={index} className="matched-partner-box">
-            <div className="partner-circle"></div> {/* Empty Circle */}
-            <div className="partner-info">
-              <div className="name">{user.fullName}</div>
-            </div>
-            <button className="view-profile-button" onClick={() => handleViewProfile(user._id)}>
-              View Profile
-            </button>
+    <div>
+      <div className="top-section11">
+        <img src={logo} alt="Logo" className="logo" />
+        <h2 className="matched-partners-title">YOUR MATCHED PARTNERS</h2>
+        <div className="selected-count">{matchedPartners.length}-Selected</div>
+      </div>
+
+      <div className="matched-partners-container">
+        {matchedPartners.length === 0 ? (
+          <div className="no-matched-partners">No Matched Partner Available</div>
+        ) : (
+          <div className="matched-partners-list">
+            {matchedPartners.map((user, index) => (
+              <div key={index} className="matched-partner-box">
+                <div className="partner-circle"></div>
+                <div className="partner-info">
+                  <div className="name">{user.fullName}</div>
+                </div>
+                <button className="view-profile-button" onClick={() => handleViewProfile(user._id)}>
+                  View Profile
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

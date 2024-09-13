@@ -5,8 +5,7 @@ import logo from '../assets/logo.png';
 import storyImage1 from '../assets/story1.jpg';
 import storyImage2 from '../assets/story2.jpg';
 import storyImage3 from '../assets/story3.jpg';
-import { FaBell } from 'react-icons/fa'; // Importing a bell icon from react-icons
-
+import { FaBell } from 'react-icons/fa'; 
 const DashboardPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
@@ -48,7 +47,7 @@ const DashboardPage = () => {
             },
           });
           const matchedData = await matchedResponse.json();
-          setMatchedPartners(matchedData);
+          setMatchedPartners(matchedData.map(partner => partner._id));
         } else {
           console.error('Error fetching current user data:', data.error);
         }
@@ -188,7 +187,7 @@ const DashboardPage = () => {
           </button>
         </div>
         <div className="current-user">
-          {currentUser && <span>{currentUser.fullName}</span>} {/* Display logged-in user's name */}
+          {currentUser && <span>{currentUser.fullName}</span>} 
         </div>
         <div className="dashboard">
           <div className="dropdown" onClick={toggleDropdown}>
