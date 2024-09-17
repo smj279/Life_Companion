@@ -22,7 +22,7 @@ import HelpPage from './Pages/HelpPage';
 
 import Profile from './Pages/Profile'; // Renamed component for logged-in user profile
 import OthersProfile from './Pages/OthersProfile'; // New component for viewing other users' profiles
-import MessagePage from './Pages/MessagePage'; // Import MessagePage component
+import ChatBox from './Pages/ChatBox'; // Import ChatBox component
 import MatchedPartners from './Pages/MatchedPartners'; // Import MatchedPartners component
 
 import { UserProvider } from './context/UserContext'; // Import UserProvider
@@ -73,7 +73,8 @@ function App() {
             {/* New route for matched partners */}
             <Route path="/matched-partners" element={<MatchedPartners />} />
 
-            <Route path="/messages/:userId" element={<MessagePage />} /> {/* Route for chat */}
+            {/* ChatBox route - included if needed separately */}
+            <Route path="/chat/:senderId/:receiverId" element={<ChatBox />} /> {/* Chat route */}
           </Routes>
         </div>
       </Router>

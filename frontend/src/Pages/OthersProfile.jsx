@@ -7,8 +7,9 @@ const OthersProfile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isMatched, setIsMatched] = useState(false); 
+  const [isMatched, setIsMatched] = useState(false);
   const navigate = useNavigate();
+  const currentUserId = localStorage.getItem('userId'); // Get the current logged-in user's ID
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -31,8 +32,8 @@ const OthersProfile = () => {
 
         const data = await response.json();
         setUser(data);
-        
-       
+
+        // Check if the user is matched
         const matchedResponse = await fetch('http://localhost:5000/api/auth/matched-partners', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -97,6 +98,12 @@ const OthersProfile = () => {
     }
   };
 
+  const handleMessage = () => {
+    const currentUserId = localStorage.getItem('userId');
+    console.log('Navigating to chat with Sender ID:', currentUserId); // Debug
+    navigate(`/chat/${currentUserId}/${userId}`); // Navigate to the chat page with senderId and receiverId
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -115,7 +122,7 @@ const OthersProfile = () => {
 
         <div className="others-profile-content">
           <div className="others-profile-section">
-            <h3>About Me</h3>
+            <h3>About </h3>
             <p>Date of Birth: {new Date(user.dob).toLocaleDateString()}</p>
             <p>Gender: {user.gender}</p>
             <p>Present Address: {user.presentAddress}</p>
@@ -131,7 +138,7 @@ const OthersProfile = () => {
           ) : (
             <button className="others-action-button" onClick={handleMatch}>Match</button>
           )}
-          <button className="others-action-button">Message</button>
+          <button className="others-action-button" onClick={handleMessage}>Message</button>
           <button className="others-action-button">More Information</button>
         </div>
       </div>

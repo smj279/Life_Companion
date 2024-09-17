@@ -44,18 +44,26 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
 
+  socket.on('join_room', ({ senderId, receiverId }) => {
+    const room = [senderId, receiverId].sort().join('_');
+    socket.join(room);
+    console.log('Joined room:', room); // Debugging statement
+  });
+
   socket.on('send_message', async (data) => {
     const { senderId, receiverId, content } = data;
-    
+    const room = [senderId, receiverId].sort().join('_');
+    console.log('Sending message from', senderId, 'to', receiverId); // Debugging statement
+
     try {
       const message = new Message({
         senderId,
         receiverId,
-        content,
+        message: content, // renamed content to message as per your schema
       });
       await message.save();
 
-      io.to(receiverId).emit('receive_message', message);
+      io.to(room).emit('receive_message', message);
     } catch (error) {
       console.error('Error saving message:', error);
     }
