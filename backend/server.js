@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users'); // Import the new routes
+const messageRoutes = require('./routes/messages'); // Import the new routes
 const http = require('http');
 const { Server } = require('socket.io');
 const Message = require('./models/Message');
@@ -34,6 +35,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 // Authentication and User routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes); // Use the new routes
+app.use('/api/messages', messageRoutes); // Use the new routes
+
 
 // Basic route
 app.get('/', (req, res) => {

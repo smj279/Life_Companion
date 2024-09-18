@@ -3,10 +3,10 @@ import './ChatBox.css';
 import io from 'socket.io-client';
 import { useParams } from 'react-router-dom';
 
-const socket = io('http://localhost:5000'); 
+const socket = io('http://localhost:5000');
 
 const ChatBox = () => {
-  const { receiverId } = useParams(); 
+  const { receiverId } = useParams();
   const [message, setMessage] = useState('');
   const [chat, setChat] = useState([]);
   const [receiverName, setReceiverName] = useState('');
@@ -24,8 +24,33 @@ const ChatBox = () => {
     console.log('receiverId in useEffect:', receiverId);
     if (!senderId || !receiverId) return;
 
+ 
     socket.emit('join_room', { senderId, receiverId });
 
+    // Fetch messages from the backend
+    const fetchMessages = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error('No token');
+
+        const response = await fetch(`http://localhost:5000/api/messages/${senderId}/${receiverId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch messages');
+
+        const data = await response.json();
+        setChat(data);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
+    fetchMessages();
+
+   
     socket.on('receive_message', (message) => {
       setChat((prevChat) => [...prevChat, message]);
     });
@@ -96,14 +121,15 @@ const ChatBox = () => {
         <div className="header-content">
           <div className="header-circle"></div>
           <h1>{receiverName}</h1>
-          <div className="three-dot-menu">•••</div> 
+          <div className="three-dot-menu">•••</div>
         </div>
       </div>
 
       <div className="chatbox-messages">
         {chat.map((msg, index) => (
           <div key={index} className={`chat-message ${msg.senderId === senderId ? 'self' : 'other'}`}>
-            <p>{msg.content}</p>
+             {msg.senderId === senderId && <div className="message-label">You</div>}
+            <p>{msg.message}</p>
           </div>
         ))}
       </div>
