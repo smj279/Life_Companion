@@ -106,12 +106,9 @@
 .chatbox-input input:focus {
     background-color: #f1f9f4;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-color: #b59766;
+    border-color: #a1c5ca;
 }
 
-.chatbox-input input:not(:placeholder-shown) {
-    background-color: #e9f5e2;
-}
 
 .chatbox-input button {
     background-color: #bc3a56; 

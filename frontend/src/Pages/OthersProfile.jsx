@@ -100,10 +100,9 @@ const OthersProfile = () => {
 
   const handleMessage = () => {
     const currentUserId = localStorage.getItem('userId');
-    console.log('Navigating to chat with Sender ID:', currentUserId); // Debug
-    navigate(`/chat/${currentUserId}/${userId}`); // Navigate to the chat page with senderId and receiverId
+    navigate(`/chat/${currentUserId}/${userId}`);
   };
-
+  
   if (loading) {
     return <div>Loading...</div>;
   }

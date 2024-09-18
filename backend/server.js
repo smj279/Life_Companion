@@ -51,6 +51,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('send_message', async (data) => {
+    console.log('Received message data:', data); // Add this line to check data being received
     const { senderId, receiverId, content } = data;
     const room = [senderId, receiverId].sort().join('_');
     console.log('Sending message from', senderId, 'to', receiverId); // Debugging statement

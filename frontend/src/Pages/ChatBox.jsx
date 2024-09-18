@@ -6,13 +6,24 @@ import { useParams } from 'react-router-dom';
 const socket = io('http://localhost:5000'); 
 
 const ChatBox = () => {
-  const { senderId, receiverId } = useParams(); 
+  const { receiverId } = useParams(); 
   const [message, setMessage] = useState('');
   const [chat, setChat] = useState([]);
   const [receiverName, setReceiverName] = useState('');
   const [loading, setLoading] = useState(true);
 
+  const senderId = localStorage.getItem('userId');
+  console.log('Retrieved senderId:', senderId);
+
+  if (!senderId) {
+    return <div>Error: No sender ID available</div>;
+  }
+
   useEffect(() => {
+    console.log('senderId in useEffect:', senderId);
+    console.log('receiverId in useEffect:', receiverId);
+    if (!senderId || !receiverId) return;
+
     socket.emit('join_room', { senderId, receiverId });
 
     socket.on('receive_message', (message) => {
