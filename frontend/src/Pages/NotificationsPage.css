@@ -1,0 +1,38 @@
+/* src/components/NotificationsPage.css */
+.notifications-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .notification-list {
+    margin-top: 20px;
+  }
+  
+  .notification-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notification-item p {
+    margin: 0;
+    color: #555;
+  }
+  
+  .match-buttonn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #ff7f7f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

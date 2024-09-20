@@ -22,7 +22,7 @@ const DashboardPage = () => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        navigate('/login');
+        navigate('/profile');
         return;
       }
 
@@ -123,9 +123,18 @@ const DashboardPage = () => {
     };
   }, []);
 
+
+//navigation part
   const handleViewProfile = (userId) => {
     navigate(`/profile/${userId}`);
   };
+
+  const handleNotificationClick = () => {
+    navigate('/notifications');  // Navigate to the notifications page
+  };
+
+
+
 
   const handleMatch = async (userId) => {
     const token = localStorage.getItem('token');
@@ -183,7 +192,7 @@ const DashboardPage = () => {
           <input type="text" placeholder="Search profile..." />
         </div>
         <div className="notification-icon">
-          <button className="notification-button">
+        <button className="notification-button" onClick={handleNotificationClick}>
             <FaBell className="bell-icon" />
           </button>
         </div>
@@ -198,7 +207,6 @@ const DashboardPage = () => {
             ref={dropdownRef}
             className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}
           >
-           
            <Link to="/dashboard">
               <FaHome className="dropdown-icon" /> Home
             </Link>

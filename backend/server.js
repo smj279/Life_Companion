@@ -10,6 +10,8 @@ const messageRoutes = require('./routes/messages'); // Import the new routes
 const http = require('http');
 const { Server } = require('socket.io');
 const Message = require('./models/Message');
+const Notification = require('./models/Notification');
+
 
 const app = express();
 const server = http.createServer(app);
@@ -42,6 +44,38 @@ app.use('/api/messages', messageRoutes); // Use the new routes
 app.get('/', (req, res) => {
   res.send('Hello from Express');
 });
+
+// Add this route in your server.js for creating notifications
+app.post('/api/notifications', async (req, res) => {
+  const { userId, type, content } = req.body;
+
+  try {
+    const notification = new Notification({
+      userId,
+      type,
+      content,
+    });
+    await notification.save();
+    res.status(201).json(notification);
+  } catch (error) {
+    console.error('Error creating notification:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Route to get notifications by user ID
+app.get('/api/notifications/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const notifications = await Notification.find({ userId });
+    res.status(200).json(notifications);
+  } catch (error) {
+    console.error('Error fetching notifications:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 // Socket.io connection for chat functionality
 io.on('connection', (socket) => {

@@ -14,6 +14,7 @@ import FullInformation from './Pages/FullInformation'; // Ensure the import is c
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import DashboardPage from './Pages/DashboardPage';
+import NotificationsPage from './Pages/NotificationsPage';
 import Story1 from './Pages/Story1';
 import Story2 from './Pages/Story2';
 import Story3 from './Pages/Story3';
@@ -24,6 +25,7 @@ import Profile from './Pages/Profile'; // Renamed component for logged-in user p
 import OthersProfile from './Pages/OthersProfile'; // New component for viewing other users' profiles
 import ChatBox from './Pages/ChatBox'; // Import ChatBox component
 import MatchedPartners from './Pages/MatchedPartners'; // Import MatchedPartners component
+import ChatRoom from './Pages/ChatRoom'; // Import ChatRoom component
 
 import { UserProvider } from './context/UserContext'; // Import UserProvider
 import './App.css';
@@ -58,6 +60,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/story1" element={<Story1 />} />
             <Route path="/story2" element={<Story2 />} />
             <Route path="/story3" element={<Story3 />} />
@@ -75,6 +78,9 @@ function App() {
 
             {/* ChatBox route - included if needed separately */}
             <Route path="/chat/:senderId/:receiverId" element={<ChatBox />} /> {/* Chat route */}
+
+            {/* New route for ChatRoom */}
+            <Route path="/chat-room" element={<ChatRoom />} /> {/* ChatRoom route */}
           </Routes>
         </div>
       </Router>
