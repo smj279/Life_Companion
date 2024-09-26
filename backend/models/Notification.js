@@ -8,6 +8,10 @@ const notificationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  matchedUserId: { // Add this field
+    type: String,
+    required: true,
+  },
   type: {
     type: String,
     required: true, // Define the type of notification (e.g., match, message, etc.)

@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Notification = require('../models/Notification'); // Import Notification model
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -124,41 +125,45 @@ router.get('/users', authMiddleware, async (req, res) => {
   }
 });
 
-// Route to add a user to matched partners
+// Route to add a user to matched partners and send notification
 router.post('/match/:userId', authMiddleware, async (req, res) => {
   const { userId } = req.params;
   const currentUserId = req.user.userId;
 
   try {
     const currentUser = await User.findById(currentUserId);
-    if (!currentUser) return res.status(404).json({ error: 'User not found' });
+    const matchedUser = await User.findById(userId);
 
-    // Check if user is already matched
+    if (!currentUser || !matchedUser) return res.status(404).json({ error: 'User not found' });
+
+    // Check if the user is already matched
     if (currentUser.matchedPartners.includes(userId)) {
       return res.status(400).json({ error: 'User already matched' });
     }
 
+    // Add matched user
     currentUser.matchedPartners.push(userId);
     await currentUser.save();
 
-    res.status(200).json({ message: 'User matched successfully' });
+    // Create a notification for the matched user
+    const notificationContent = `${currentUser.fullName} has sent you a match request.`;
+    const notification = new Notification({
+      userId: matchedUser._id, // ID of the user receiving the notification
+      matchedUserId: currentUser._id, // ID of the user sending the notification
+      type: 'match',
+      content: notificationContent,
+      isRead: false,
+    });
+
+    await notification.save();
+
+    res.status(200).json({ message: 'User matched and notification sent successfully' });
   } catch (error) {
     console.error('Error matching user:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
-// Route to get a user by ID
-router.get('/users/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-    const user = await User.findById(id).select('fullName');
-    if (!user) return res.status(404).json({ error: 'User not found' });
-    res.status(200).json(user);
-  } catch (error) {
-    console.error('Error fetching user by ID:', error);
-    res.status(500).json({ error: 'Server error' });
-  }
-});
+
 
 // Route to remove a user from matched partners
 router.post('/unmatch/:userId', authMiddleware, async (req, res) => {
@@ -179,6 +184,19 @@ router.post('/unmatch/:userId', authMiddleware, async (req, res) => {
   }
 });
 
+// Route to get a user by ID
+router.get('/users/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findById(id).select('fullName');
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching user by ID:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // Route to get matched partners' profiles
 router.get('/matched-partners', authMiddleware, async (req, res) => {
   try {
@@ -191,7 +209,5 @@ router.get('/matched-partners', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
-
-
 
 module.exports = router;

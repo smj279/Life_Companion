@@ -7,6 +7,8 @@ const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users'); // Import the new routes
 const messageRoutes = require('./routes/messages'); // Import the new routes
+const notificationRoutes = require('./routes/notifications'); // Import the new routes
+
 const http = require('http');
 const { Server } = require('socket.io');
 const Message = require('./models/Message');
@@ -38,6 +40,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes); // Use the new routes
 app.use('/api/messages', messageRoutes); // Use the new routes
+app.use('/api/notifications', notificationRoutes); // Use the new routes
 
 
 // Basic route
@@ -75,6 +78,20 @@ app.get('/api/notifications/:userId', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+//rrrrrrrrrrrrrr
+app.get('/api/users/:userId', async (req, res) => {
+  const { userId } = req.params;
+  try {
+      const user = await UserModel.findById(userId); // or however you're retrieving the user
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+      res.json(user);
+  } catch (error) {
+      res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 
 // Socket.io connection for chat functionality

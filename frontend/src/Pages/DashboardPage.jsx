@@ -123,7 +123,6 @@ const DashboardPage = () => {
     };
   }, []);
 
-
 //navigation part
   const handleViewProfile = (userId) => {
     navigate(`/profile/${userId}`);
@@ -132,9 +131,6 @@ const DashboardPage = () => {
   const handleNotificationClick = () => {
     navigate('/notifications');  // Navigate to the notifications page
   };
-
-
-
 
   const handleMatch = async (userId) => {
     const token = localStorage.getItem('token');
@@ -151,6 +147,7 @@ const DashboardPage = () => {
 
       if (response.ok) {
         setMatchedPartners([...matchedPartners, userId]);
+        alert('Match request sent successfully!'); // Notify user about the request
       } else {
         console.error('Error matching user:', await response.json());
       }
@@ -300,8 +297,7 @@ const DashboardPage = () => {
                    <Link to="/story3" className="read-story">Read The Story</Link>
                 </div>
                )}
-                   </div>
-
+                 </div>
               </div>
           </div>
       );
