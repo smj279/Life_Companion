@@ -1,4 +1,3 @@
-// AdditionalInfoForm.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -15,18 +14,15 @@ const AdditionalInfoForm = () => {
 
   const validateForm = () => {
     const errors = {};
-
     if (!presentAddress || !permanentAddress || !fathersName || !mothersName || !dob) {
       errors.general = 'All fields are required';
     }
-
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
   const handleNext = (e) => {
     e.preventDefault();
-
     if (!validateForm()) {
       setFormValid(false);
       return;
@@ -80,9 +76,10 @@ const AdditionalInfoForm = () => {
             onChange={(e) => setMothersName(e.target.value)}
             required
           />
+          <label htmlFor="dob" className="dob-label">Date of Birth</label>
           <input
             type="date"
-            placeholder="Date of Birth"
+            id="dob"
             value={dob}
             onChange={(e) => setDob(e.target.value)}
             required

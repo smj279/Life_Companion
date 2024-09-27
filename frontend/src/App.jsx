@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Pages/Header';
@@ -9,7 +7,7 @@ import CarouselSection from './Pages/CarouselSection';
 import ProfileForm from './Pages/ProfileForm';
 import AdditionalInfoForm from './Pages/AdditionalInfoForm';
 import Education from './Pages/Education';
-
+import MoreInfo from './Pages/More_Info'; // Correct import for More_Info.jsx
 import FullInformation from './Pages/FullInformation'; // Ensure the import is correct
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
@@ -53,6 +51,7 @@ function App() {
             <Route path="/profile-form" element={<ProfileForm />} />
             <Route path="/additional-info" element={<AdditionalInfoForm />} />
             <Route path="/education" element={<Education />} />
+            <Route path="/more-info" element={<MoreInfo />} /> {/* Updated More_Info route */}
 
             {/* Full Information Route */}
             <Route path="/full-information" element={<FullInformation />} /> {/* Correct route */}
