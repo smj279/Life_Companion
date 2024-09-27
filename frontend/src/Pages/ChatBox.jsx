@@ -8,7 +8,7 @@ const socket = io('http://localhost:5000');
 const ChatBox = () => {
   const { receiverId } = useParams();
   const [message, setMessage] = useState('');
-  const [chat, setChat] = useState([]);
+  const [chat, setChat] = useState([]);  // Ensure chat is initialized as an empty array
   const [receiverName, setReceiverName] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -24,10 +24,8 @@ const ChatBox = () => {
     console.log('receiverId in useEffect:', receiverId);
     if (!senderId || !receiverId) return;
 
- 
     socket.emit('join_room', { senderId, receiverId });
 
-    // Fetch messages from the backend
     const fetchMessages = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -42,15 +40,15 @@ const ChatBox = () => {
         if (!response.ok) throw new Error('Failed to fetch messages');
 
         const data = await response.json();
-        setChat(data);
+        setChat(data.messages || []);  // Ensure chat is an array
       } catch (err) {
         console.error(err.message);
+        setChat([]);  // Set to an empty array on error
       }
     };
 
     fetchMessages();
 
-   
     socket.on('receive_message', (message) => {
       setChat((prevChat) => [...prevChat, message]);
     });
@@ -126,12 +124,16 @@ const ChatBox = () => {
       </div>
 
       <div className="chatbox-messages">
-        {chat.map((msg, index) => (
-          <div key={index} className={`chat-message ${msg.senderId === senderId ? 'self' : 'other'}`}>
-             {msg.senderId === senderId && <div className="message-label">You</div>}
-            <p>{msg.message}</p>
-          </div>
-        ))}
+        {chat.length > 0 ? (  // Check if chat has messages
+          chat.map((msg, index) => (
+            <div key={index} className={`chat-message ${msg.senderId === senderId ? 'self' : 'other'}`}>
+              {msg.senderId === senderId && <div className="message-label">You</div>}
+              <p>{msg.message}</p>
+            </div>
+          ))
+        ) : (
+          <div>No messages yet.</div>  // Handle case with no messages
+        )}
       </div>
       
       <div className="chatbox-input">

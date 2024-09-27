@@ -55,6 +55,7 @@ const ChatRoom = () => {
                 <div className="chat-circle"></div>
                 <div className="chat-info">
                   <div className="chat-name">
+                  {user.fullName} {/* Display full name */}
                     {user.senderId === localStorage.getItem('userId')
                       ? user.receiverId
                       : user.senderId}

@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const Message = require('../models/Message');
+const User = require('../models/User'); // Import the User model
 const authMiddleware = require('../middleware/authenticateToken'); // Adjust path as needed
 
 // Route to get messages between sender and receiver
@@ -15,7 +16,10 @@ router.get('/:senderId/:receiverId', authMiddleware, async (req, res) => {
       ]
     }).sort({ timestamp: 1 }); 
 
-    res.status(200).json(messages);
+    const sender = await User.findById(senderId).select('fullName');
+    const receiver = await User.findById(receiverId).select('fullName');
+
+    res.status(200).json({ messages, sender, receiver });
   } catch (error) {
     console.error('Error fetching messages:', error);
     res.status(500).json({ error: 'Server error' });
@@ -68,13 +72,17 @@ router.get('/chat-users', authMiddleware, async (req, res) => {
       }
     ]);
 
-    res.status(200).json(users);
+    const userIds = users.flatMap(({ _id }) => [_id.senderId, _id.receiverId]);
+    const uniqueUserIds = [...new Set(userIds.filter((id) => id !== userId))]; // Exclude current user
+
+    const userDetails = await User.find({ _id: { $in: uniqueUserIds } }).select('fullName');
+
+    res.status(200).json(userDetails);
   } catch (error) {
     console.error('Error fetching chat users:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
-
 
 
 module.exports = router;
