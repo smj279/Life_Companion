@@ -80,7 +80,7 @@ function App() {
             <Route path="/chat/:senderId/:receiverId" element={<ChatBox />} /> {/* Chat route */}
 
             {/* New route for ChatRoom */}
-            <Route path="/chat-room" element={<ChatRoom />} /> {/* ChatRoom route */}
+            <Route path="/chat" element={<ChatRoom />} /> 
           </Routes>
         </div>
       </Router>
