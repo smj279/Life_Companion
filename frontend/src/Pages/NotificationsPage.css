@@ -5,6 +5,7 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: -170px;
 }
 
 h2 {
@@ -18,7 +19,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 12px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -36,7 +37,7 @@ h2 {
   margin: 0;
 }
 
-.message-button {
+.message-buttonn {
  width: 230px;
  height: 45px;
  background-color: #d4235b; 
@@ -46,8 +47,9 @@ h2 {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 1px;
+  margin-left: 300px;
 }
 
-.message-button:hover {
+.message-buttonn:hover {
   background-color: #0056b3;
 }

@@ -136,17 +136,38 @@ router.post('/match/:userId', authMiddleware, async (req, res) => {
 
     if (!currentUser || !matchedUser) return res.status(404).json({ error: 'User not found' });
 
-    // Check if the user is already matched
-    if (currentUser.matchedPartners.includes(userId)) {
-      return res.status(400).json({ error: 'User already matched' });
+    // Check if the user has already sent a match request
+    if (matchedUser.matchedPartners.includes(currentUserId.toString())) {
+      // If the other user has already sent a request, it's an acceptance
+      const notificationContent = `${currentUser.fullName} has accepted your match request.`;
+
+      // Create a notification for the matched user that the match has been accepted
+      const notification = new Notification({
+        userId: matchedUser._id, // The user who gets notified
+        matchedUserId: currentUser._id, // The user who accepted the match
+        type: 'match-accept',
+        content: notificationContent,
+        isRead: false,
+      });
+
+      // Add matched user to both users' matchedPartners lists
+      currentUser.matchedPartners.push(userId);
+      matchedUser.matchedPartners.push(currentUserId);
+
+      await currentUser.save();
+      await matchedUser.save();
+      await notification.save();
+
+      return res.status(200).json({ message: 'Match accepted and notification sent successfully' });
     }
 
-    // Add matched user
+    // If no match request exists, send a new match request
     currentUser.matchedPartners.push(userId);
     await currentUser.save();
 
-    // Create a notification for the matched user
     const notificationContent = `${currentUser.fullName} has sent you a match request.`;
+
+    // Create a notification for the matched user
     const notification = new Notification({
       userId: matchedUser._id, // ID of the user receiving the notification
       matchedUserId: currentUser._id, // ID of the user sending the notification
@@ -157,13 +178,12 @@ router.post('/match/:userId', authMiddleware, async (req, res) => {
 
     await notification.save();
 
-    res.status(200).json({ message: 'User matched and notification sent successfully' });
+    res.status(200).json({ message: 'Match request sent and notification created successfully' });
   } catch (error) {
     console.error('Error matching user:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
-
 
 // Route to remove a user from matched partners
 router.post('/unmatch/:userId', authMiddleware, async (req, res) => {

@@ -72,12 +72,13 @@ const NotificationPage = () => {
     <div className="notifications-container">
       <h2>Notifications</h2>
       {notifications.length === 0 ? (
-        <p>No notifications</p>
+        <li>No notifications</li>
       ) : (
         notifications.map((notification) => (
           <div key={notification._id} className="notification">
+             <li key={notification._id} className={`notification ${notification.isRead ? 'read' : 'unread'}`}></li>
             <p>{notification.content}</p>
-            <button className="message-button" onClick={() => handleViewProfile(notification.matchedUserId)}>
+            <button className="message-buttonn" onClick={() => handleViewProfile(notification.matchedUserId)}>
               View Profile
             </button>
           </div>
