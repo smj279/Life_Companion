@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Pages/Header';
@@ -9,11 +7,12 @@ import CarouselSection from './Pages/CarouselSection';
 import ProfileForm from './Pages/ProfileForm';
 import AdditionalInfoForm from './Pages/AdditionalInfoForm';
 import Education from './Pages/Education';
-
+import MoreInfo from './Pages/More_Info'; // Correct import for More_Info.jsx
 import FullInformation from './Pages/FullInformation'; // Ensure the import is correct
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import DashboardPage from './Pages/DashboardPage';
+import NotificationsPage from './Pages/NotificationsPage';
 import Story1 from './Pages/Story1';
 import Story2 from './Pages/Story2';
 import Story3 from './Pages/Story3';
@@ -25,6 +24,11 @@ import OthersProfile from './Pages/OthersProfile'; // New component for viewing 
 import OthersFullInformation from './Pages/OthersFullInformation'; // New component for full info
 
 import MessagePage from './Pages/MessagePage'; // Import MessagePage component
+
+import ChatBox from './Pages/ChatBox'; // Import ChatBox component
+import MatchedPartners from './Pages/MatchedPartners'; // Import MatchedPartners component
+import ChatRoom from './Pages/ChatRoom'; // Import ChatRoom component
+
 
 import { UserProvider } from './context/UserContext'; // Import UserProvider
 import './App.css';
@@ -52,6 +56,7 @@ function App() {
             <Route path="/profile-form" element={<ProfileForm />} />
             <Route path="/additional-info" element={<AdditionalInfoForm />} />
             <Route path="/education" element={<Education />} />
+            <Route path="/more-info" element={<MoreInfo />} /> {/* Updated More_Info route */}
 
             {/* Full Information Routes */}
             <Route path="/full-information" element={<FullInformation />} /> {/* Correct route */}
@@ -60,14 +65,30 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/story1" element={<Story1 />} />
             <Route path="/story2" element={<Story2 />} />
             <Route path="/story3" element={<Story3 />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/help" element={<HelpPage />} />
+
+
+
+            {/* New route for logged-in user's profile */}
+
             <Route path="/profile" element={<Profile />} /> 
             <Route path="/profile/:userId" element={<OthersProfile />} /> 
-            <Route path="/messages/:userId" element={<MessagePage />} /> {/* Route for chat */}
+
+            <Route path="/messages/:userId" element={<MessagePage />} /> {/* Route for chat */
+
+            {/* New route for matched partners */}
+            <Route path="/matched-partners" element={<MatchedPartners />} />
+
+            {/* ChatBox route - included if needed separately */}
+            <Route path="/chat/:senderId/:receiverId" element={<ChatBox />} /> {/* Chat route */}
+
+            {/* New route for ChatRoom */}
+            <Route path="/chat" element={<ChatRoom />} /> 
           </Routes>
         </div>
       </Router>

@@ -76,6 +76,15 @@ label {
   margin-top: 20px;
 }
 
+.dob-label {
+  margin-bottom: 5px;
+  margin-left: -250px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #555;
+  text-align: left;
+}
+
 .styled-button:hover {
   background-color: #0056b3;
 }

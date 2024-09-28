@@ -16,6 +16,29 @@ const Education = () => {
   const [errors, setErrors] = useState({});
   const [formValid, setFormValid] = useState(true);
 
+  const occupations = [
+    "Student", "Engineer", "Doctor", "Nurse", "Teacher", "Scientist", 
+    "Artist", "Designer", "Architect", "Software Developer", "Accountant", 
+    "Manager", "Chef", "Musician", "Writer", "Data Analyst", "Salesperson", 
+    "Marketing Specialist", "Web Developer", "Researcher", "Consultant", 
+    "Electrician", "Plumber", "Mechanic", "Firefighter", "Police Officer", 
+    "Paramedic", "Pharmacist", "Veterinarian", "Graphic Designer", 
+    "Construction Worker", "Real Estate Agent", "Insurance Agent", 
+    "Social Worker", "Business Analyst", "Project Manager", 
+    "Human Resources Specialist", "Customer Service Representative", 
+    "Secretary", "Administrative Assistant", "Barista", "Cashier", 
+    "Waiter", "Event Planner", "Fashion Designer", "Photographer", 
+    "Journalist", "Public Relations Specialist", "Pilot", "Flight Attendant", 
+    "Travel Agent", "Fitness Trainer", "Interior Designer", 
+    "Web Designer", "Entrepreneur", "Data Scientist"
+  ];
+
+  const currentStatuses = [
+    "Unemployed", "Employed Full-Time", "Employed Part-Time", 
+    "Self-Employed", "Intern", "Freelancer", 
+    "Student", "Retired", "Looking for Work"
+  ];
+
   const validateForm = () => {
     const errors = {};
 
@@ -66,7 +89,7 @@ const Education = () => {
             required
           />
           <input
-            type="text"
+            type="date"
             placeholder="School Year"
             value={schoolYear}
             onChange={(e) => setSchoolYear(e.target.value)}
@@ -80,7 +103,7 @@ const Education = () => {
             required
           />
           <input
-            type="text"
+            type="date"
             placeholder="College Year"
             value={collegeYear}
             onChange={(e) => setCollegeYear(e.target.value)}
@@ -94,26 +117,32 @@ const Education = () => {
             required
           />
           <input
-            type="text"
+            type="date"
             placeholder="University Year"
             value={universityYear}
             onChange={(e) => setUniversityYear(e.target.value)}
             required
           />
-          <input
-            type="text"
-            placeholder="Current Status"
-            value={currentStatus}
-            onChange={(e) => setCurrentStatus(e.target.value)}
+          <select 
+            value={currentStatus} 
+            onChange={(e) => setCurrentStatus(e.target.value)} 
             required
-          />
-          <input
-            type="text"
-            placeholder="Occupation"
-            value={occupation}
-            onChange={(e) => setOccupation(e.target.value)}
+          >
+            <option value="" disabled>Select Current Status</option>
+            {currentStatuses.map((status, index) => (
+              <option key={index} value={status}>{status}</option>
+            ))}
+          </select>
+          <select 
+            value={occupation} 
+            onChange={(e) => setOccupation(e.target.value)} 
             required
-          />
+          >
+            <option value="" disabled>Select Occupation</option>
+            {occupations.map((occ, index) => (
+              <option key={index} value={occ}>{occ}</option>
+            ))}
+          </select>
           <button type="submit">Next</button>
         </form>
       </div>

@@ -1,0 +1,55 @@
+.notifications-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: -170px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.notification:hover {
+  background-color: #f0f0f0;
+}
+
+.notification p {
+  font-size: 19px;
+  color: #555;
+  margin: 0;
+}
+
+.message-buttonn {
+ width: 230px;
+ height: 45px;
+ background-color: #d4235b; 
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1px;
+  margin-left: 300px;
+}
+
+.message-buttonn:hover {
+  background-color: #0056b3;
+}

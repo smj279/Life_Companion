@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 import storyImage1 from '../assets/story1.jpg';
 import storyImage2 from '../assets/story2.jpg';
 import storyImage3 from '../assets/story3.jpg';
-import { FaBell } from 'react-icons/fa'; // Importing a bell icon from react-icons
+import { FaBell, FaHome, FaUser, FaComments, FaInfoCircle, FaQuestionCircle, FaSignOutAlt, FaUsers } from 'react-icons/fa'; 
 
 const DashboardPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -14,6 +14,7 @@ const DashboardPage = () => {
   const [users, setUsers] = useState([]); // State to hold user data
   const [currentUserId, setCurrentUserId] = useState(null);
   const [currentUser, setCurrentUser] = useState(null); // State to store current logged-in user
+  const [matchedPartners, setMatchedPartners] = useState([]); // State to hold matched partners
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const DashboardPage = () => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        navigate('/login');
+        navigate('/profile');
         return;
       }
 
@@ -38,6 +39,16 @@ const DashboardPage = () => {
         if (response.ok) {
           setCurrentUserId(data.userId);
           setCurrentUser(data); // Save the entire current user data
+          // Fetch matched partners
+          const matchedResponse = await fetch('http://localhost:5000/api/auth/matched-partners', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const matchedData = await matchedResponse.json();
+          setMatchedPartners(matchedData.map(partner => partner._id));
         } else {
           console.error('Error fetching current user data:', data.error);
         }
@@ -112,8 +123,60 @@ const DashboardPage = () => {
     };
   }, []);
 
+//navigation part
   const handleViewProfile = (userId) => {
     navigate(`/profile/${userId}`);
+  };
+
+  const handleNotificationClick = () => {
+    navigate('/notifications');  // Navigate to the notifications page
+  };
+
+  const handleMatch = async (userId) => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/match/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setMatchedPartners([...matchedPartners, userId]);
+        alert('Match request sent successfully!'); // Notify user about the request
+      } else {
+        console.error('Error matching user:', await response.json());
+      }
+    } catch (error) {
+      console.error('Error matching user:', error);
+    }
+  };
+
+  const handleUnmatch = async (userId) => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/unmatch/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setMatchedPartners(matchedPartners.filter(id => id !== userId));
+      } else {
+        console.error('Error unmatching user:', await response.json());
+      }
+    } catch (error) {
+      console.error('Error unmatching user:', error);
+    }
   };
 
   return (
@@ -126,12 +189,12 @@ const DashboardPage = () => {
           <input type="text" placeholder="Search profile..." />
         </div>
         <div className="notification-icon">
-          <button className="notification-button">
+        <button className="notification-button" onClick={handleNotificationClick}>
             <FaBell className="bell-icon" />
           </button>
         </div>
         <div className="current-user">
-          {currentUser && <span>{currentUser.fullName}</span>} {/* Display logged-in user's name */}
+          {currentUser && <span>{currentUser.fullName}</span>} 
         </div>
         <div className="dashboard">
           <div className="dropdown" onClick={toggleDropdown}>
@@ -141,13 +204,27 @@ const DashboardPage = () => {
             ref={dropdownRef}
             className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}
           >
-            <Link to="/dashboard">Home</Link>
-            <Link to="/profile">My Profile</Link>
-            <a href="#">Matched Partners</a>
-            <a href="#">Chat Room</a>
-            <a href="/help">Help</a>
-            <Link to="/about-us">About us</Link>
-            <a href="#" onClick={handleLogout}>Logout</a>
+           <Link to="/dashboard">
+              <FaHome className="dropdown-icon" /> Home
+            </Link>
+            <Link to="/profile">
+              <FaUser className="dropdown-icon" /> My Profile
+            </Link>
+            <Link to="/matched-partners">
+              <FaUsers className="dropdown-icon" /> Matched Partners
+            </Link>
+            <Link to="/chat">
+              <FaComments className="dropdown-icon" /> Chat Room
+            </Link>
+            <Link to="/help">
+              <FaQuestionCircle className="dropdown-icon" /> Help
+            </Link>
+            <Link to="/about-us">
+              <FaInfoCircle className="dropdown-icon" /> About Us
+            </Link>
+            <a href="#" onClick={handleLogout}>
+              <FaSignOutAlt className="dropdown-icon" /> Logout
+            </a>
           </div>
         </div>
       </div>
@@ -170,7 +247,15 @@ const DashboardPage = () => {
                     <button className="message-button" onClick={() => handleViewProfile(user._id)}>
                       View Profile
                     </button>
-                    <button className="match-button">Match</button>
+                    {matchedPartners.includes(user._id) ? (
+                      <button className="match-button" onClick={() => handleUnmatch(user._id)}>
+                        Unmatch
+                      </button>
+                    ) : (
+                      <button className="match-button" onClick={() => handleMatch(user._id)}>
+                        Match
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -186,33 +271,36 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        <div className="success-stories">
-          <h2>Success Stories</h2>
-          <p className="note">At Life Companion, we celebrate the beautiful journeys of love that begin here. Read about our couples who found their perfect match and took their first steps towards a lifetime of happiness together.</p>
-          <div className="story">
-            <img src={storyImage1} alt="Story 1" />
-            <p>Adirtto and Mira found love through Life Companion and tied the knot last year.</p>
-            <Link to="/story1" className="read-story">Read The Story</Link>
+            <div className="success-stories">
+               <h2>Success Stories</h2>
+                 <p className="note">At Life Companion, we celebrate the beautiful journeys of love that begin here. Read about our couples who found their perfect match and took their first steps towards a lifetime of happiness together.</p>
+  
+                    <div className="story">
+                <img src={storyImage1} alt="Story 1" />
+               <p>Adirtto and Mira found love through Life Companion and tied the knot last year.</p>
+                   <Link to="/story1" className="read-story">Read The Story</Link>
+                        </div>
+  
+                   <div className="story">
+                   <img src={storyImage2} alt="Story 2" />
+                   <p>David and Sara's journey is a testament to the power of finding the right partner.</p>
+                   <Link to="/story2" className="read-story">Read The Story</Link>
+                      </div>         
+             <div className="show-more-link" onClick={toggleMoreStories}>
+                 {showMore ? 'Show Less' : 'Show More'}
+                  </div>
+
+                     {showMore && (
+                    <div className="story">
+                      <img src={storyImage3} alt="Story 3" />
+                     <p>John and Lily met on Life Companion and celebrated their wedding in a grand ceremony.</p>
+                   <Link to="/story3" className="read-story">Read The Story</Link>
+                </div>
+               )}
+                 </div>
+              </div>
           </div>
-          <div className="story">
-            <img src={storyImage2} alt="Story 2" />
-            <p>Vikram and Srabonti's journey began on Life Companion, leading to a beautiful wedding.</p>
-            <Link to="/story2" className="read-story">Read The Story</Link>
-          </div>
-          {showMore && (
-            <div className="story">
-              <img src={storyImage3} alt="Story 3" />
-              <p>Akbar and Parvin are another happy couple who met through Life Companion and recently married.</p>
-              <Link to="/story3" className="read-story">Read The Story</Link>
-            </div>
-          )}
-          <div className="more-stories" onClick={toggleMoreStories}>
-            {showMore ? 'Show Less' : 'More Stories'}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+      );
+    };
 
 export default DashboardPage;
