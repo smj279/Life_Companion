@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   margin-right: 20px;
-  margin-top: -17px;
+  margin-top: -8px;
 }
 
 .top-section .search-box {
@@ -107,7 +107,7 @@
   right: 0;
   left: -230px;
   top: 60px;
-  background-color: brown;
+  background-color:rgb(228, 226, 223);
   color: white;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -119,9 +119,11 @@
 
 .top-section .dashboard .dropdown-content a,
 .top-section .dashboard .dropdown-content button {
-  color: white;
+  color: black;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 25px 30px;
-  font-size: 18px;
+  font-size: 19px;
   text-decoration: none;
   display: block;
   border-bottom: 1px solid #ddd;
@@ -141,6 +143,13 @@
 .top-section .dashboard .dropdown-content button:hover {
   background-color: coral;
 }
+
+.dropdown-icon {
+  margin-right: 20px;
+  font-size: 18px;
+ margin-bottom: -5px;
+}
+
 
 .content-section {
   padding: 100px 20px 20px;
@@ -201,12 +210,17 @@
   text-align: center;
 }
 
-.more-stories {
-  text-align: center;
-  color: blue;
+.show-more-link {
   cursor: pointer;
+  font-weight: bold;
+  color: rgb(100, 100, 233);
+  margin-top: 15px; /* Space between second story and show more */
+  text-align: center;
+  display: block;
+}
+
+.show-more-link:hover {
   text-decoration: underline;
-  font-size: 16px;
 }
 
 
@@ -276,8 +290,8 @@
 }
 
 .scrollable-section .box .message-button,
-.scrollable-section .box .match-button {
-  background-color: green;
+.scrollable-section .box .match-button,
+.scrollable-section .box .unmatch-button {
   border: none;
   color: white;
   padding: 10px 15px; 
@@ -286,8 +300,16 @@
   font-size: 14px; 
 }
 
+.scrollable-section .box .message-button {
+  background-color:green; /* Background color for the message button */
+}
+
 .scrollable-section .box .match-button {
   background-color: darkgreen; 
+}
+
+.scrollable-section .box .unmatch-button {
+  background-color: darkred; /* Background color for the unmatch button */
 }
 
 .scrollable-section .navigation-buttons {

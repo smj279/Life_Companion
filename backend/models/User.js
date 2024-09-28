@@ -1,4 +1,3 @@
-// models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -27,9 +26,13 @@ const userSchema = new mongoose.Schema({
   weight: { type: String },
   height: { type: String },
   hobby: { type: String },
+
+  matchedPartners: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Matched partners field
   createdAt: { type: Date, default: Date.now }
+
 });
 
+// Create a User model based on the schema
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

@@ -1,109 +1,77 @@
-/* General container styling */
-
-.page-background2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.moreinfo-container {
   width: 100%;
-  height: 100vh;
-  background: whitesmoke
-}
-
-.info-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 30px 50px;
   background: linear-gradient(to right, #b2868e, #e9d6d7);
-  padding: 30px;
   border-radius: 8px;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Title styling */
-.info-title {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 50px;
-  color: #2c3e50;
-}
-
-/* Styling for the back arrow */
-.previous-arrow {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 1.5rem;
-  color: #2c3e50;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.previous-arrow:hover {
-  color: #3498db;
-}
-
-/* Form input group styling */
-.input-group {
-  margin-bottom: 3px;
-}
-
-.info-label {
-  font-size: 1.1rem;
-  margin-bottom: 6px;
+.moreinfo-previous-arrow {
   display: block;
-  font-weight: bold;
-  color: #2c3e50;
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+  margin-bottom: -13px;
+  margin-left: -35px;
 }
 
-.info-input {
-  width: 120%; /* Adjust width as needed */
-  height: 40px; /* Adjust height as needed */
-  padding: 1200px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+.moreinfo-previous-arrow:hover {
+  color: #0056b3;
+}
+
+.moreinfo-title {
+  text-align: center;
+  font-size: 44px;
   color: #333;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  outline: none;
+  margin-bottom: 20px;
 }
 
-/* Input focus styling for interaction */
-.info-input:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+.moreinfo-input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px; /* Space between input groups */
 }
 
-/* Styled button for form submission */
-.styled-button {
-  width: 100%;
-  background-color: #3498db;
+.moreinfo-input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.moreinfo-input-group select,
+.moreinfo-input-group input {
+  width: 100%; /* Ensure full width */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+.moreinfo-input-group select {
+  width: 130%;
+}
+
+.moreinfo-styled-button {
+  width: 40%;
+  padding: 10px;
+  background-color: #1f4c7d;
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 1.2rem;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  align-self: center; /* Center the button */
 }
 
-.styled-button:hover {
-  background-color: #2980b9;
-  box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
+.moreinfo-styled-button:hover {
+  background-color: #0056b3;
 }
 
-/* Media queries for responsiveness */
-@media screen and (max-width: 768px) {
-  .info-container {
-    padding: 20px;
-  }
-
-  .info-title {
-    font-size: 1.8rem;
-  }
-
-  .styled-button {
-    font-size: 1rem;
-  }
+.moreinfo-alert {
+  color: red;
+  margin-bottom: 10px;
 }

@@ -1,3 +1,4 @@
+// education.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -12,15 +13,36 @@ const Education = () => {
   const [universityYear, setUniversityYear] = useState('');
   const [currentStatus, setCurrentStatus] = useState('');
   const [occupation, setOccupation] = useState('');
-  const [customOccupation, setCustomOccupation] = useState('');
   const [errors, setErrors] = useState({});
   const [formValid, setFormValid] = useState(true);
+
+  const occupations = [
+    "Student", "Engineer", "Doctor", "Nurse", "Teacher", "Scientist", 
+    "Artist", "Designer", "Architect", "Software Developer", "Accountant", 
+    "Manager", "Chef", "Musician", "Writer", "Data Analyst", "Salesperson", 
+    "Marketing Specialist", "Web Developer", "Researcher", "Consultant", 
+    "Electrician", "Plumber", "Mechanic", "Firefighter", "Police Officer", 
+    "Paramedic", "Pharmacist", "Veterinarian", "Graphic Designer", 
+    "Construction Worker", "Real Estate Agent", "Insurance Agent", 
+    "Social Worker", "Business Analyst", "Project Manager", 
+    "Human Resources Specialist", "Customer Service Representative", 
+    "Secretary", "Administrative Assistant", "Barista", "Cashier", 
+    "Waiter", "Event Planner", "Fashion Designer", "Photographer", 
+    "Journalist", "Public Relations Specialist", "Pilot", "Flight Attendant", 
+    "Travel Agent", "Fitness Trainer", "Interior Designer", 
+    "Web Designer", "Entrepreneur", "Data Scientist"
+  ];
+
+  const currentStatuses = [
+    "Unemployed", "Employed Full-Time", "Employed Part-Time", 
+    "Self-Employed", "Intern", "Freelancer", 
+    "Student", "Retired", "Looking for Work"
+  ];
 
   const validateForm = () => {
     const errors = {};
 
-    // If "Other" is selected, ensure custom occupation is provided
-    if (!school || !schoolYear || !college || !collegeYear || !university || !universityYear || !currentStatus || (!occupation && !customOccupation)) {
+    if (!school || !schoolYear || !college || !collegeYear || !university || !universityYear || !currentStatus || !occupation) {
       errors.general = 'All fields are required';
     }
 
@@ -44,15 +66,15 @@ const Education = () => {
     localStorage.setItem('university', university);
     localStorage.setItem('universityYear', universityYear);
     localStorage.setItem('currentStatus', currentStatus);
-    localStorage.setItem('occupation', occupation === 'Other' ? customOccupation : occupation);
+    localStorage.setItem('occupation', occupation);
 
     // Navigate to more info page
     window.location.href = '/more-info';
   };
 
   return (
-    <div className="page-background1">
-      <div className="Edu-container">
+    <div className="page-background">
+      <div className="Container1">
         <Link to="/additional-info" className="previous-arrow">
           <FaArrowLeft />
         </Link>
@@ -66,7 +88,6 @@ const Education = () => {
             onChange={(e) => setSchool(e.target.value)}
             required
           />
-          <label>Passed Year</label>
           <input
             type="date"
             placeholder="School Year"
@@ -81,7 +102,6 @@ const Education = () => {
             onChange={(e) => setCollege(e.target.value)}
             required
           />
-          <label>Passed Year</label>
           <input
             type="date"
             placeholder="College Year"
@@ -96,7 +116,6 @@ const Education = () => {
             onChange={(e) => setUniversity(e.target.value)}
             required
           />
-          <label>Passed Year</label>
           <input
             type="date"
             placeholder="University Year"
@@ -104,46 +123,26 @@ const Education = () => {
             onChange={(e) => setUniversityYear(e.target.value)}
             required
           />
-          <input
-            type="text"
-            placeholder="Current Status"
-            value={currentStatus}
-            onChange={(e) => setCurrentStatus(e.target.value)}
+          <select 
+            value={currentStatus} 
+            onChange={(e) => setCurrentStatus(e.target.value)} 
             required
-          />
-          
-          {/* Dropdown for Occupation (alphabetically ordered) */}
-          <select
-            value={occupation}
-            onChange={(e) => setOccupation(e.target.value)}
+          >
+            <option value="" disabled>Select Current Status</option>
+            {currentStatuses.map((status, index) => (
+              <option key={index} value={status}>{status}</option>
+            ))}
+          </select>
+          <select 
+            value={occupation} 
+            onChange={(e) => setOccupation(e.target.value)} 
             required
           >
             <option value="" disabled>Select Occupation</option>
-            <option value="Accountant">Accountant</option>
-            <option value="Artist">Artist</option>
-            <option value="Businessperson">Businessperson</option>
-            <option value="Doctor">Doctor</option>
-            <option value="Engineer">Engineer</option>
-            <option value="Freelancer">Freelancer</option>
-            <option value="Lawyer">Lawyer</option>
-            <option value="Researcher">Researcher</option>
-            <option value="Software Engineer">Software Engineer</option>
-            <option value="Student">Student</option>
-            <option value="Teacher">Teacher</option>
-            <option value="Other">Other</option>
+            {occupations.map((occ, index) => (
+              <option key={index} value={occ}>{occ}</option>
+            ))}
           </select>
-
-          {/* Show custom occupation input only if "Other" is selected */}
-          {occupation === 'Other' && (
-            <input
-              type="text"
-              placeholder="Please specify your occupation"
-              value={customOccupation}
-              onChange={(e) => setCustomOccupation(e.target.value)}
-              required
-            />
-          )}
-          
           <button type="submit">Next</button>
         </form>
       </div>

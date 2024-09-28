@@ -2,9 +2,23 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Notification = require('../models/Notification'); // Import Notification model
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const multer = require('multer'); // Import multer for file uploads
 require('dotenv').config();
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Save files in the "uploads" directory
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
 
 // Middleware to check authentication
 const authMiddleware = (req, res, next) => {
@@ -63,7 +77,7 @@ router.post('/signup', async (req, res) => {
       foodHabit,
       weight,
       height,
-      hobby
+      hobby,
     });
 
     await user.save();
@@ -94,31 +108,145 @@ router.post('/login', async (req, res) => {
       expiresIn: '1h',
     });
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, userId: user._id });
+
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
 
-// Route to get the current user's data
-router.get('/me', authMiddleware, async (req, res) => {
+// Route to upload profile picture
+router.post('/upload', authMiddleware, upload.single('profilePicture'), async (req, res) => {
+  const userId = req.user.userId;
+
   try {
-    const user = await User.findById(req.user.userId).select('-password');
-    res.json({ userId: user._id, ...user.toObject() });
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    // Assuming you serve the images statically, construct the URL
+    const imageUrl = `/uploads/${req.file.filename}`; // This is the relative URL to the uploaded image
+    console.log(imageUrl)
+
+    // Update the user's profile picture in the database
+    const user = await User.findByIdAndUpdate(userId, {
+      profilePicture: imageUrl, // Store the image URL in the database
+    }, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Return the profile picture URL back to the frontend
+    res.status(200).json({ message: 'Profile picture uploaded successfully', profilePicture: imageUrl });
   } catch (error) {
-    console.error('Error fetching user:', error);
+    console.error('Error uploading profile picture:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-// Route to get all users except the current user
-router.get('/users', authMiddleware, async (req, res) => {
+// Route to add a user to matched partners and send notification
+router.post('/match/:userId', authMiddleware, async (req, res) => {
+  const { userId } = req.params;
+  const currentUserId = req.user.userId;
+
   try {
-    const users = await User.find({ _id: { $ne: req.user.userId } }).select('fullName presentAddress dob religion');
-    res.status(200).json(users);
+    const currentUser = await User.findById(currentUserId);
+    const matchedUser = await User.findById(userId);
+
+    if (!currentUser || !matchedUser) return res.status(404).json({ error: 'User not found' });
+
+    // Check if the user has already sent a match request
+    if (matchedUser.matchedPartners.includes(currentUserId.toString())) {
+      // If the other user has already sent a request, it's an acceptance
+      const notificationContent = `${currentUser.fullName} has accepted your match request.`;
+
+      // Create a notification for the matched user that the match has been accepted
+      const notification = new Notification({
+        userId: matchedUser._id, // The user who gets notified
+        matchedUserId: currentUser._id, // The user who accepted the match
+        type: 'match-accept',
+        content: notificationContent,
+        isRead: false,
+      });
+
+      // Add matched user to both users' matchedPartners lists
+      currentUser.matchedPartners.push(userId);
+      matchedUser.matchedPartners.push(currentUserId);
+
+      await currentUser.save();
+      await matchedUser.save();
+      await notification.save();
+
+      return res.status(200).json({ message: 'Match accepted and notification sent successfully' });
+    }
+
+    // If no match request exists, send a new match request
+    currentUser.matchedPartners.push(userId);
+    await currentUser.save();
+
+    const notificationContent = `${currentUser.fullName} has sent you a match request.`;
+
+    // Create a notification for the matched user
+    const notification = new Notification({
+      userId: matchedUser._id, // ID of the user receiving the notification
+      matchedUserId: currentUser._id, // ID of the user sending the notification
+      type: 'match',
+      content: notificationContent,
+      isRead: false,
+    });
+
+    await notification.save();
+
+    res.status(200).json({ message: 'Match request sent and notification created successfully' });
   } catch (error) {
-    console.error('Error fetching users:', error);
+    console.error('Error matching user:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Route to remove a user from matched partners
+router.post('/unmatch/:userId', authMiddleware, async (req, res) => {
+  const { userId } = req.params;
+  const currentUserId = req.user.userId;
+
+  try {
+    const currentUser = await User.findById(currentUserId);
+    if (!currentUser) return res.status(404).json({ error: 'User not found' });
+
+    currentUser.matchedPartners = currentUser.matchedPartners.filter(id => id.toString() !== userId);
+    await currentUser.save();
+
+    res.status(200).json({ message: 'User unmatched successfully' });
+  } catch (error) {
+    console.error('Error unmatching user:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Route to get a user by ID
+router.get('/users/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findById(id).select('fullName');
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching user by ID:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Route to get matched partners' profiles
+router.get('/matched-partners', authMiddleware, async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.user.userId).populate('matchedPartners', 'fullName presentAddress dob religion');
+    if (!currentUser) return res.status(404).json({ error: 'User not found' });
+
+    res.status(200).json(currentUser.matchedPartners); // Return matched partners' details
+  } catch (error) {
+    console.error('Error fetching matched partners:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
