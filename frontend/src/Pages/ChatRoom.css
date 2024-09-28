@@ -82,7 +82,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 330%; /* Same width as matched partners list */
+  width: 260%; /* Same width as matched partners list */
 }
 
 .chat-box {
@@ -124,7 +124,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  width: 22%;
+  width: 20%;
 }
 
 .view-chat-button:hover {

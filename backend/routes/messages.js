@@ -15,6 +15,7 @@ router.get('/:senderId/:receiverId', authMiddleware, async (req, res) => {
         { senderId: receiverId, receiverId: senderId }
       ]
     }).sort({ timestamp: 1 }); 
+    console.log('Fetched messages:', messages); // Log fetched messages
 
     const sender = await User.findById(senderId).select('fullName');
     const receiver = await User.findById(receiverId).select('fullName');
@@ -25,6 +26,7 @@ router.get('/:senderId/:receiverId', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
 // Cleaned-up delete route
 router.delete('/:messageId', authMiddleware, async (req, res) => {
   const { messageId } = req.params;
@@ -51,7 +53,7 @@ router.delete('/:messageId', authMiddleware, async (req, res) => {
   }
 });
 
-// fetch user 
+// Fetch chat users
 router.get('/chat-users', authMiddleware, async (req, res) => {
   const userId = req.user.userId;
   
@@ -71,11 +73,13 @@ router.get('/chat-users', authMiddleware, async (req, res) => {
         }
       }
     ]);
+    console.log('Chat users aggregation result:', users);
 
     const userIds = users.flatMap(({ _id }) => [_id.senderId, _id.receiverId]);
     const uniqueUserIds = [...new Set(userIds.filter((id) => id !== userId))]; // Exclude current user
 
     const userDetails = await User.find({ _id: { $in: uniqueUserIds } }).select('fullName');
+    console.log('Chat users:', userDetails); // Log user details
 
     res.status(200).json(userDetails);
   } catch (error) {
@@ -84,7 +88,4 @@ router.get('/chat-users', authMiddleware, async (req, res) => {
   }
 });
 
-
 module.exports = router;
-
-
