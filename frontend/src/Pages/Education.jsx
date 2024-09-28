@@ -1,4 +1,3 @@
-// education.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -81,6 +80,7 @@ const Education = () => {
         <h1>Education</h1>
         {!formValid && <p style={{ color: 'red' }}>{errors.general}</p>}
         <form onSubmit={handleNext}>
+          {/* School and College inputs */}
           <input
             type="text"
             placeholder="School"
@@ -109,6 +109,7 @@ const Education = () => {
             onChange={(e) => setCollegeYear(e.target.value)}
             required
           />
+          {/* University input */}
           <input
             type="text"
             placeholder="University"
@@ -123,9 +124,13 @@ const Education = () => {
             onChange={(e) => setUniversityYear(e.target.value)}
             required
           />
-          <select 
-            value={currentStatus} 
-            onChange={(e) => setCurrentStatus(e.target.value)} 
+
+          {/* Current Status Dropdown */}
+          <label htmlFor="current-status">Current Status:</label>
+          <select
+            id="current-status"
+            value={currentStatus}
+            onChange={(e) => setCurrentStatus(e.target.value)}
             required
           >
             <option value="" disabled>Select Current Status</option>
@@ -133,9 +138,13 @@ const Education = () => {
               <option key={index} value={status}>{status}</option>
             ))}
           </select>
-          <select 
-            value={occupation} 
-            onChange={(e) => setOccupation(e.target.value)} 
+
+          {/* Occupation Dropdown */}
+          <label htmlFor="occupation">Occupation:</label>
+          <select
+            id="occupation"
+            value={occupation}
+            onChange={(e) => setOccupation(e.target.value)}
             required
           >
             <option value="" disabled>Select Occupation</option>
@@ -143,6 +152,8 @@ const Education = () => {
               <option key={index} value={occ}>{occ}</option>
             ))}
           </select>
+
+          {/* Submit Button */}
           <button type="submit">Next</button>
         </form>
       </div>

@@ -60,21 +60,7 @@ const MoreInfoPage = () => {
           </div>
         )}
         <form onSubmit={handleNextClick}>
-          <div className="moreinfo-input-group">
-            <label htmlFor="religion">Religion</label>
-            <select
-              id="religion"
-              value={religion}
-              onChange={(e) => setReligion(e.target.value)}
-              required
-            >
-              <option value="">Select your religion</option>
-              <option value="Islam">Islam</option>
-              <option value="Hindu">Hindu</option>
-              <option value="Christian">Christian</option>
-              <option value="Buddhist">Buddhist</option>
-            </select>
-          </div>
+         
           <div className="moreinfo-input-group">
             <label htmlFor="foodHabit">Food Habit</label>
             <input
@@ -116,6 +102,21 @@ const MoreInfoPage = () => {
               onChange={(e) => setHobby(e.target.value)}
               required
             />
+          </div>
+          <div className="moreinfo-input-group">
+            <label htmlFor="religion">Religion</label>
+            <select
+              id="religion"
+              value={religion}
+              onChange={(e) => setReligion(e.target.value)}
+              required
+            >
+              <option value="">Select your religion</option>
+              <option value="Islam">Islam</option>
+              <option value="Hindu">Hindu</option>
+              <option value="Christian">Christian</option>
+              <option value="Buddhist">Buddhist</option>
+            </select>
           </div>
           <button type="submit" className="moreinfo-styled-button">
             Next

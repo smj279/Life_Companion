@@ -28,35 +28,33 @@
   margin-bottom: 20px;
 }
 
+/* Updated .moreinfo-input-group styling */
 .moreinfo-input-group {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Align items vertically */
   margin-bottom: 15px; /* Space between input groups */
 }
 
 .moreinfo-input-group label {
-  display: block;
-  margin-bottom: 5px;
+  margin-bottom: 5px; /* Adds space below label */
   font-size: 16px;
   color: #333;
+  white-space: nowrap; /* Prevents label text from breaking into a new line */
 }
 
 .moreinfo-input-group select,
 .moreinfo-input-group input {
-  width: 100%; /* Ensure full width */
+  width: 100%; /* Ensure input boxes take full width */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  box-sizing: border-box; /* Include padding and border in element's total width */
-}
-
-.moreinfo-input-group select {
-  width: 130%;
+  box-sizing: border-box;
 }
 
 .moreinfo-styled-button {
-  width: 40%;
+  width: 150px; /* Fixed width for the button */
+  margin-top: 20px;
   padding: 10px;
   background-color: #1f4c7d;
   color: white;

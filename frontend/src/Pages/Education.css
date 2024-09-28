@@ -1,4 +1,4 @@
-
+/* Education form container */
 .education-container {
   max-width: 700px;
   width: 80%;
@@ -11,6 +11,7 @@
   text-align: left;
 }
 
+/* Back arrow styling */
 .previous-arrow {
   display: flex;
   align-items: center;
@@ -24,6 +25,7 @@
   color: #0056b3;
 }
 
+/* Education form title */
 .education-title {
   margin-bottom: 20px;
   font-size: 24px;
@@ -31,6 +33,7 @@
   text-align: center;
 }
 
+/* Form styling */
 form {
   display: flex;
   flex-direction: column;
@@ -41,12 +44,14 @@ form {
 }
 
 .input-group label {
-  width: 200px; 
+  width: 200px;
   display: inline-block;
 }
 
-.education-input {
+/* Input and select fields */
+input, select {
   padding: 12px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
@@ -54,6 +59,43 @@ form {
   box-sizing: border-box;
 }
 
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Select dropdown */
+select {
+  background-color: rgba(255, 255, 255, 0.718);
+  color: #333;
+  width:60%;
+  height:20%;
+}
+
+/* Focus effect for input and select fields */
+select:focus, input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Submit button */
+button[type="submit"] {
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Styled button for other actions */
 .styled-button {
   background-color: black;
   color: white;
@@ -76,8 +118,8 @@ form {
   outline: none;
 }
 
+/* Alert styling */
 .alert {
   color: red;
   margin-bottom: 10px;
-
 }
