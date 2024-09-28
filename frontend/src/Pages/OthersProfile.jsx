@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import './OthersProfile.css';
 
 const OthersProfile = () => {
@@ -132,6 +132,7 @@ const OthersProfile = () => {
         </div>
 
         <div className="others-profile-actions">
+
           {isMatched ? (
             <button className="others-action-button" onClick={handleUnmatch}>Unmatch</button>
           ) : (
@@ -140,7 +141,11 @@ const OthersProfile = () => {
           <button className="others-action-button" onClick={handleMessage} disabled={!isMatched}>
             Message
           </button>
-          <button className="others-action-button">More Information</button>
+          <Link to={`/others-full-information/${userId}`} className="others-action-button">
+            Full Information
+          </Link>
+          
+
         </div>
       </div>
     </div>

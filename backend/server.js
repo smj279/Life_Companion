@@ -27,6 +27,8 @@ const io = new Server(server, {
 // Middleware
 app.use(bodyParser.json());
 app.use(cors({ origin: 'http://localhost:5173' }));
+app.use('/uploads', express.static('uploads'));
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
@@ -39,8 +41,10 @@ mongoose.connect(process.env.MONGODB_URI, {
 // Authentication and User routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes); // Use the new routes
+app.use('/uploads', express.static('uploads'))
 app.use('/api/messages', messageRoutes); // Use the new routes
 app.use('/api/notifications', notificationRoutes); // Use the new routes
+
 
 
 // Basic route
