@@ -14,6 +14,9 @@ const DashboardPage = () => {
   const [users, setUsers] = useState([]); // State to hold user data
   const [currentUserId, setCurrentUserId] = useState(null);
   const [currentUser, setCurrentUser] = useState(null); // State to store current logged-in user
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
+  const [searchFilter, setSearchFilter] = useState('fullName'); // State for search filter
+  const [showSuggestions, setShowSuggestions] = useState(false); // State for showing suggestions
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
@@ -37,7 +40,7 @@ const DashboardPage = () => {
         const data = await response.json();
         if (response.ok) {
           setCurrentUserId(data.userId);
-          setCurrentUser(data); // Save the entire current user data
+          setCurrentUser(data);
         } else {
           console.error('Error fetching current user data:', data.error);
         }
@@ -116,6 +119,28 @@ const DashboardPage = () => {
     navigate(`/profile/${userId}`);
   };
 
+  const handleSearchQueryChange = (event) => {
+    setSearchQuery(event.target.value);
+    setShowSuggestions(true);
+  };
+
+  const handleSearchFilterChange = (event) => {
+    setSearchFilter(event.target.value);
+  };
+
+  const handleSuggestionClick = (user) => {
+    setSearchQuery(user[searchFilter]);
+    setShowSuggestions(false);
+  };
+
+  const filteredUsers = users.filter((user) =>
+    user[searchFilter]?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredSuggestions = users.filter((user) =>
+    user[searchFilter]?.toLowerCase().includes(searchQuery.toLowerCase())
+  ).slice(0, 5);
+
   return (
     <div className="dashboard-page">
       <div className="top-section">
@@ -123,7 +148,30 @@ const DashboardPage = () => {
           <img src={logo} alt="Logo" />
         </div>
         <div className="search-box">
-          <input type="text" placeholder="Search profile..." />
+          <input
+            type="text"
+            placeholder="Search profile..."
+            value={searchQuery}
+            onChange={handleSearchQueryChange}
+          />
+          <select value={searchFilter} onChange={handleSearchFilterChange}>
+            <option value="fullName">Name</option>
+            <option value="presentAddress">Present Address</option>
+            <option value="religion">Religion</option>
+          </select>
+          {showSuggestions && searchQuery && (
+            <div className="suggestions-dropdown">
+              {filteredSuggestions.map((user, index) => (
+                <div
+                  key={index}
+                  className="suggestion-item"
+                  onClick={() => handleSuggestionClick(user)}
+                >
+                  {user[searchFilter]}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="notification-icon">
           <button className="notification-button">
@@ -137,7 +185,7 @@ const DashboardPage = () => {
           <div className="dropdown" onClick={toggleDropdown}>
             <span className="dropdown-icon">&#9776;</span>
           </div>
-          <div 
+          <div
             ref={dropdownRef}
             className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}
           >
@@ -157,7 +205,7 @@ const DashboardPage = () => {
           <h2>Recommended Matches</h2>
           <div className="box-container">
             <div className="boxes">
-              {users.slice(scrollIndex, scrollIndex + 3).map((user, index) => (
+              {filteredUsers.slice(scrollIndex, scrollIndex + 3).map((user, index) => (
                 <div key={index} className="box">
                   <div className="circle"></div>
                   <div className="name">{user.fullName}</div>
@@ -180,7 +228,7 @@ const DashboardPage = () => {
             <button className="previous-button" onClick={handlePrevious} disabled={scrollIndex === 0}>
               Previous
             </button>
-            <button className="next-button" onClick={handleNext} disabled={scrollIndex >= users.length - 3}>
+            <button className="next-button" onClick={handleNext} disabled={scrollIndex >= filteredUsers.length - 3}>
               Next
             </button>
           </div>
