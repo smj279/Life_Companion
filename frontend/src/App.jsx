@@ -22,6 +22,7 @@ import HelpPage from './Pages/HelpPage';
 
 import Profile from './Pages/Profile'; // Renamed component for logged-in user profile
 import OthersProfile from './Pages/OthersProfile'; // New component for viewing other users' profiles
+import OthersFullInformation from './Pages/OthersFullInformation'; // New component for full info
 
 import MessagePage from './Pages/MessagePage'; // Import MessagePage component
 
@@ -52,8 +53,9 @@ function App() {
             <Route path="/additional-info" element={<AdditionalInfoForm />} />
             <Route path="/education" element={<Education />} />
 
-            {/* Full Information Route */}
+            {/* Full Information Routes */}
             <Route path="/full-information" element={<FullInformation />} /> {/* Correct route */}
+            <Route path="/others-full-information/:userId" element={<OthersFullInformation />} /> {/* New route for others' full information */}
 
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
@@ -63,17 +65,8 @@ function App() {
             <Route path="/story3" element={<Story3 />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/help" element={<HelpPage />} />
-
-            
-            {/* New route for logged-in user's profile */}
             <Route path="/profile" element={<Profile />} /> 
-
-            {/* New route for viewing other users' profiles */}
             <Route path="/profile/:userId" element={<OthersProfile />} /> 
-
-
-            
-
             <Route path="/messages/:userId" element={<MessagePage />} /> {/* Route for chat */}
           </Routes>
         </div>

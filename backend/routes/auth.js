@@ -4,7 +4,20 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const multer = require('multer'); // Import multer for file uploads
 require('dotenv').config();
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Save files in the "uploads" directory
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
 
 // Middleware to check authentication
 const authMiddleware = (req, res, next) => {
@@ -63,7 +76,7 @@ router.post('/signup', async (req, res) => {
       foodHabit,
       weight,
       height,
-      hobby
+      hobby,
     });
 
     await user.save();
@@ -101,24 +114,32 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Route to get the current user's data
-router.get('/me', authMiddleware, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.userId).select('-password');
-    res.json({ userId: user._id, ...user.toObject() });
-  } catch (error) {
-    console.error('Error fetching user:', error);
-    res.status(500).json({ error: 'Server error' });
-  }
-});
+// Route to upload profile picture
+router.post('/upload', authMiddleware, upload.single('profilePicture'), async (req, res) => {
+  const userId = req.user.userId;
 
-// Route to get all users except the current user
-router.get('/users', authMiddleware, async (req, res) => {
   try {
-    const users = await User.find({ _id: { $ne: req.user.userId } }).select('fullName presentAddress dob religion');
-    res.status(200).json(users);
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    // Assuming you serve the images statically, construct the URL
+    const imageUrl = `/uploads/${req.file.filename}`; // This is the relative URL to the uploaded image
+    console.log(imageUrl)
+
+    // Update the user's profile picture in the database
+    const user = await User.findByIdAndUpdate(userId, {
+      profilePicture: imageUrl, // Store the image URL in the database
+    }, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Return the profile picture URL back to the frontend
+    res.status(200).json({ message: 'Profile picture uploaded successfully', profilePicture: imageUrl });
   } catch (error) {
-    console.error('Error fetching users:', error);
+    console.error('Error uploading profile picture:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });

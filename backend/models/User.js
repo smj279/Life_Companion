@@ -1,4 +1,3 @@
-// models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -27,9 +26,11 @@ const userSchema = new mongoose.Schema({
   weight: { type: String },
   height: { type: String },
   hobby: { type: String },
-  createdAt: { type: Date, default: Date.now }
+  profilePicture: { type: String }, // URL of the profile picture
+  createdAt: { type: Date, default: Date.now }, // Default timestamp when the user is created
 });
 
+// Create a User model based on the schema
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
