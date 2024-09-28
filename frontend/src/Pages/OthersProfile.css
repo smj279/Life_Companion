@@ -34,7 +34,7 @@ body {
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #ff69b4; /* Bumble-like pink */
+  border: 4px solid #ff69b4; 
   padding: 10px;
   background-color: white;
 }
