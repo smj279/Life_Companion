@@ -83,11 +83,14 @@
     align-self:flex-end;
     background-color:  #9f94ac;
     margin-left: auto; 
+    width: 70%;
+    height: 14%;
 }
 
 .chat-message.other {
     align-self: flex-start;
     background-color: #d1d7da;
+    width: 70%;
 }
 
 

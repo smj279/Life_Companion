@@ -102,7 +102,7 @@ const OthersProfile = () => {
     const currentUserId = localStorage.getItem('userId');
     navigate(`/chat/${currentUserId}/${userId}`);
   };
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -121,7 +121,7 @@ const OthersProfile = () => {
 
         <div className="others-profile-content">
           <div className="others-profile-section">
-            <h3>About </h3>
+            <h3>About</h3>
             <p>Date of Birth: {new Date(user.dob).toLocaleDateString()}</p>
             <p>Gender: {user.gender}</p>
             <p>Present Address: {user.presentAddress}</p>
@@ -137,7 +137,9 @@ const OthersProfile = () => {
           ) : (
             <button className="others-action-button" onClick={handleMatch}>Match</button>
           )}
-          <button className="others-action-button" onClick={handleMessage}>Message</button>
+          <button className="others-action-button" onClick={handleMessage} disabled={!isMatched}>
+            Message
+          </button>
           <button className="others-action-button">More Information</button>
         </div>
       </div>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ChatRoom.css';
-import logo from '../assets/logo.png'; 
+import logo from '../assets/logo.png';
 
 const ChatRoom = () => {
-  const [chatUsers, setChatUsers] = useState([]); 
+  const [chatUsers, setChatUsers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,9 +23,7 @@ const ChatRoom = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Chat hhhhhhhhhhUsers:", data); // Check the structure of the data
-          console.log("reciever id",data[0]._id)
-          setChatUsers(data); 
+          setChatUsers(data);
         } else {
           console.error('Error fetching chat users');
         }
@@ -38,7 +36,6 @@ const ChatRoom = () => {
   }, [navigate]);
 
   const handleViewProfile = (userId) => {
-    console.log("Profile ID for navigation:", userId); // Debugging line
     if (userId) {
       navigate(`/profile/${userId}`);
     } else {
@@ -46,11 +43,19 @@ const ChatRoom = () => {
     }
   };
 
+  const handleNavigateHome = () => {
+    navigate('/dashboard'); // Navigate to the dashboard
+  };
+
   return (
     <div className="chat-room">
       <div className="top-sectionn1">
-        <img src={logo} alt="Logo" className="chat-logo" /> 
+        <img src={logo} alt="Logo" className="chat-logo" />
         <h2 className="chatroom-title">CHAT-ROOM</h2>
+        {/* Home button for navigation */}
+        <button className="home-button" onClick={handleNavigateHome}>
+          Home
+        </button>
       </div>
       <div className="chatroom-users-container">
         {chatUsers.length === 0 ? (
@@ -58,19 +63,15 @@ const ChatRoom = () => {
         ) : (
           <div className="chat-list">
             {chatUsers.map((user, index) => {
-              // Determine profile ID based on the current user's ID stored in localStorage
               const currentUserId = localStorage.getItem('userId');
-              console.log(user[index],"ggggg")
               const profileId = user.senderId === currentUserId ? user.receiverId : user.senderId;
-
-              console.log(`Current User ID: ${currentUserId}, Profile ID: ${profileId}`); // Debugging line
 
               return (
                 <div key={index} className="chat-box">
                   <div className="chat-circle"></div>
                   <div className="chat-info">
                     <div className="chat-name">
-                      {user.fullName} {/* Display full name */}
+                      {user.fullName}
                     </div>
                   </div>
                   <button

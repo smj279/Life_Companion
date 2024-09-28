@@ -47,6 +47,26 @@
   z-index: 1000;
 }
 
+.home-button {
+  background-color: darkslategray;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 19px;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  width:10%;
+  margin-bottom: 20px;
+}
+
+.home-button:hover {
+  background-color: darkslategray;
+}
+
 .chat-logo {
   height: 70px;
   width: auto;
@@ -67,7 +87,7 @@
   white-space: nowrap;
   flex-grow: 1; /* This allows the title to take up remaining space */
   text-align: center; /* Center aligns the title */
-  margin-right: 290px; /* Add margin to the right if needed */
+  margin-right: 200px; /* Add margin to the right if needed */
   margin-bottom: -6px;
 }
 
@@ -82,7 +102,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 260%; /* Same width as matched partners list */
+  width: 270%; /* Same width as matched partners list */
 }
 
 .chat-box {
@@ -125,6 +145,7 @@
   cursor: pointer;
   font-size: 14px;
   width: 20%;
+  margin-bottom: 19px;
 }
 
 .view-chat-button:hover {

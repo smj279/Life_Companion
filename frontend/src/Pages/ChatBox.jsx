@@ -11,6 +11,7 @@ const ChatBox = () => {
   const [chat, setChat] = useState([]);  // Ensure chat is initialized as an empty array
   const [receiverName, setReceiverName] = useState('');
   const [loading, setLoading] = useState(true);
+  const [isMatched, setIsMatched] = useState(false); // State to check match status
 
   const senderId = localStorage.getItem('userId');
   console.log('Retrieved senderId:', senderId);
@@ -18,6 +19,21 @@ const ChatBox = () => {
   if (!senderId) {
     return <div>Error: No sender ID available</div>;
   }
+
+  useEffect(() => {
+    const checkMatchStatus = async () => {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:5000/api/auth/matched-partners', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const matchedData = await response.json();
+      setIsMatched(matchedData.some(partner => partner._id === receiverId)); // Check if receiver is matched
+    };
+
+    checkMatchStatus();
+  }, [senderId, receiverId]);
 
   useEffect(() => {
     console.log('senderId in useEffect:', senderId);
@@ -124,28 +140,34 @@ const ChatBox = () => {
       </div>
 
       <div className="chatbox-messages">
-        {chat.length > 0 ? (  // Check if chat has messages
-          chat.map((msg, index) => (
-            <div key={index} className={`chat-message ${msg.senderId === senderId ? 'self' : 'other'}`}>
-              {msg.senderId === senderId && <div className="message-label">You</div>}
-              <p>{msg.message}</p>
-            </div>
-          ))
+        {isMatched ? ( // Check if the users are matched
+          chat.length > 0 ? (
+            chat.map((msg, index) => (
+              <div key={index} className={`chat-message ${msg.senderId === senderId ? 'self' : 'other'}`}>
+                {msg.senderId === senderId && <div className="message-label">You</div>}
+                <p>{msg.message}</p>
+              </div>
+            ))
+          ) : (
+            <div>No messages yet.</div> // Handle case with no messages
+          )
         ) : (
-          <div>No messages yet.</div>  // Handle case with no messages
+          <div>You cannot chat with this user until matched.</div> // Message if not matched
         )}
       </div>
-      
-      <div className="chatbox-input">
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type a message"
-          onKeyDown={handleKeyDown}
-        />
-        <button onClick={sendMessage}>Send</button>
-      </div>
+
+      {isMatched && ( // Input and send button only visible if matched
+        <div className="chatbox-input">
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Type a message"
+            onKeyDown={handleKeyDown}
+          />
+          <button onClick={sendMessage}>Send</button>
+        </div>
+      )}
     </div>
   );
 };
