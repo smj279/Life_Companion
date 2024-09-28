@@ -1,0 +1,152 @@
+/* NewSection styles */
+.new-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 50px;
+}
+
+.section-part {
+    width: 30%;
+    text-align: center;
+}
+
+.section-part img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.section-part h3 {
+    color: green;
+    margin-bottom: 10px;
+}
+
+.section-part p {
+    margin-bottom: 10px;
+}
+
+.section-part a {
+    color: blue;
+    text-decoration: underline;
+}
+
+/* CarouselSection styles */
+.carousel-section {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.carousel-image-container {
+    position: relative;
+}
+
+.carousel-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.carousel-thumbnails {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.thumbnail {
+    margin: 0 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.thumbnail-image {
+    width: 60px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.thumbnail:hover .thumbnail-image {
+    transform: scale(1.1);
+}
+
+.thumbnail-caption {
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #333;
+}
+
+/* ContentSection styles */
+.content-section {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h2, .content-section h3, .content-section h4 {
+  color: black;
+}
+
+.content-section p {
+  line-height: 1.6;
+}
+
+.about-life a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.footer-column {
+  flex: 1;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  color: #000;
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+}
+
+.footer-note {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9em;
+  color: grey;
+}
+
+.red-section {
+  background-color: gray;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+  text-align: center;
+}

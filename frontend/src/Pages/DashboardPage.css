@@ -28,6 +28,7 @@
   flex-grow: 1;
   text-align: center;
   margin-left: 150px;
+  position: relative; 
 }
 
 .top-section .search-box input {
@@ -38,6 +39,15 @@
   margin-top: 22px;
   border-radius: 4px;
   margin-left: 330px;
+}
+
+.top-section .search-box select {
+  margin-top: 22px;
+  margin-left: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
 }
 
 /* Styling for the notification bell button */
@@ -65,8 +75,9 @@
   color: yellow;
   font-size: 24px;
   margin-right: 80px;
-   /* Adjust size if needed */
+  /* Adjust size if needed */
 }
+
 .top-section .current-user {
   margin-right: 150px;
   font-size: 20px;
@@ -139,28 +150,6 @@
  margin-bottom: -5px;
 }
 
-/*
-.dropdown-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.dropdown-logo {
-  width: 150px;
-  height: 40px;
- 
-}
-
-.close-icon {
-  font-size: 24px;
-  cursor: pointer;
-  color: red;
-  font-weight: bold;
-}
-
-*/
 
 .content-section {
   padding: 100px 20px 20px;
@@ -235,16 +224,15 @@
 }
 
 
-/* Scrollable boxes */
 .scrollable-section {
   position: relative;
   margin-top: 40px;
-  overflow: hidden; /* Ensure only the visible boxes are shown */
+  overflow: hidden; 
 }
 
 .scrollable-section .box-container {
   display: flex;
-  justify-content: center; /* Center align boxes */
+  justify-content: center; 
   overflow: hidden;
   position: relative;
 }
@@ -262,12 +250,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 250px; /* Fixed width */
-  height: 300px; /* Fixed height */
+  width: 250px; 
+  height: 300px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  box-sizing: border-box; /* Ensure padding/border does not affect size */
+  box-sizing: border-box; 
 }
 
 .scrollable-section .box .circle {
@@ -290,16 +278,15 @@
 }
 
 .scrollable-section .box .details p {
-  margin: 5px 0; /* Adjust spacing between fields */
+  margin: 5px 0; 
 }
 
-/* Match/Unmatch buttons */
 .scrollable-section .box .buttons {
   display: flex;
   justify-content: space-around;
   width: 100%;
   margin-top: 10px;
-  gap: 10px; /* Space between buttons */
+  gap: 10px; 
 }
 
 .scrollable-section .box .message-button,
@@ -307,10 +294,10 @@
 .scrollable-section .box .unmatch-button {
   border: none;
   color: white;
-  padding: 10px 15px; /* Adjust padding for better appearance */
+  padding: 10px 15px; 
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px; /* Adjust font size if needed */
+  font-size: 14px; 
 }
 
 .scrollable-section .box .message-button {
@@ -318,7 +305,7 @@
 }
 
 .scrollable-section .box .match-button {
-  background-color: darkgreen; /* Background color for the match button */
+  background-color: darkgreen; 
 }
 
 .scrollable-section .box .unmatch-button {
@@ -347,11 +334,34 @@
 }
 
 .scrollable-section .previous-button {
-  background-color: blue; /* Distinguish Previous button color */
+  background-color: blue; 
 }
 
 .scrollable-section .previous-button:disabled,
 .scrollable-section .next-button:disabled {
   background-color: gray;
   cursor: not-allowed;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+  color:black;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
 }
